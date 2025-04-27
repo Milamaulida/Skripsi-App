@@ -63,7 +63,7 @@
     <button type="submit" class="btn btn-success px-4 py-2 rounded-pill shadow-sm me-2">
         <i class="bi bi-check-circle me-1"></i> Simpan
     </button>
-    <a href="/input-nilai-kelas-7-guru" class="btn btn-primary px-4 py-2 rounded-pill">
+    <a href="/input nilai kelas 7 guru" class="btn btn-primary px-4 py-2 rounded-pill">
         <i class="bi bi-arrow-left me-1"></i> Kembali
     </a>
 </div>

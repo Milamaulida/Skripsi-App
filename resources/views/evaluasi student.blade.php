@@ -1,14 +1,18 @@
 @extends('layouts.sidebar')
 @section('content')
-<div class="search-container">
-            <span>🔍</span>
-            <input type="text" placeholder="Search">
-            <a href="#">Search</a>
-        </div>
-        <div class="container mx-auto p-4">
-        
-        <br>
+<div class="flex-1 bg-gray-50">
+<div class="flex justify-end items-center mb-8">
 
+    <div class="flex items-center space-x-4">
+        <div class="text-right">
+            <div class="font-bold">Mila Maulida</div>
+            <div class="text-sm text-gray-500">1234567890</div>
+        </div>
+        <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full">
+    </div>
+</div>
+
+        <div class="container mx-auto p-4">
 <div class="flex items-center bg-white rounded-xl shadow-md p-4 w-full max-w-6xl">
     <div class="w-24 h-24 rounded-md overflow-hidden">
         <img src="{{ asset('images/Kelas 8 pic.png') }}" alt="" class="object-cover w-full h-full">

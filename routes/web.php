@@ -96,6 +96,10 @@ Route::get('/dashboard student', function () {
     return view('dashboard student');
 })->name('dashboard student');
 
+Route::get('/dashboard admin', function () {
+    return view('dashboard admin');
+})->name('dashboard admin');
+
 Route::get('/class student', function () {
     return view('class student');
 })->name('class student');
@@ -689,3 +693,45 @@ Route::get('/edit nilai', function () {
 
 Route::get('/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
 Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+
+
+Route::get('/tambah soal evaluasi guru', function () {
+    return view('tambah soal evaluasi guru');
+})->name('tambah soal evaluasi guru');
+
+Route::get('/tambah soal evaluasi guru esai', function () {
+    return view('tambah soal evaluasi guru esai');
+})->name('tambah soal evaluasi guru esai');
+
+Route::get('/data guru', function () {
+    return view('data guru');
+})->name('data guru');
+
+Route::get('/data siswa', function () {
+    return view('data siswa');
+})->name('data siswa');
+
+Route::get('/edit data guru', function () {
+    return view('edit data guru');
+})->name('edit data guru');
+
+Route::get('/tambah data guru', function () {
+    return view('tambah data guru');
+})->name('tambah data guru');
+
+Route::get('/edit data siswa', function () {
+    return view('edit data siswa');
+})->name('edit data siswa');
+
+Route::get('/tambah data siswa', function () {
+    return view('tambah data siswa');
+})->name('tambah data siswa');
+
+Route::get('/data materi', function () {
+    return view('data materi');
+})->name('data materi');
+
+Route::get('/edit materi', function () {
+    return view('edit materi');
+})->name('edit materi');
+

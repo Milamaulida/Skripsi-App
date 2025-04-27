@@ -1,25 +1,43 @@
 @extends('layouts.sidebar')
 @section('content')
-<div class="container mt-5 d-flex justify-content-center">
-        <div class="search-container">
-            <span>🔍</span>
-            <input type="text" placeholder="Search">
-            <a href="#">Search</a>
+<div class="flex-1 bg-gray-50">
+<div class="flex justify-between items-center mb-8">
+    <div class="relative w-80">
+        <input type="text" placeholder="Search" class="border rounded p-2 pl-10 w-full">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+            </svg>
         </div>
     </div>
+
+    <div class="flex items-center space-x-4">
+        <div class="text-right">
+            <div class="font-bold">Mila Maulida</div>
+            <div class="text-sm text-gray-500">1234567890</div>
+        </div>
+        <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full">
+    </div>
+</div>
+
 
 
     <div class="mt-5 bg-white text-white p-5 rounded-lg flex items-center justify-between">
         <div>
-        <div style="color: #00A5FF; font-size: 40px; font-family: Poppins; font-weight: 700; word-wrap: break-word">PILIH KELAS MU &<br/>AYO MULAI BELAJAR!!</div>
+        <div style="color: #00A5FF; font-size: 40px; font-family: Poppins; font-weight: 700; word-wrap: break-word">BUAT MATERI &<br/>TAMBAH MATERI</div>
         </div>
         <img src="{{ asset('images/pic2.png') }}" alt="Ilustrasi">
 
     </div>
 
     <div class="mt-6">
-    <div style="width: 1030.70px; height: 59.14px; background: #00A5FF; border-top-left-radius: 10px; border-top-right-radius: 10px"><div style="width: 73.11px; height: 43px; color: white; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Kelas</div></div>
-        <div class="grid grid-cols-3 gap-4">
+        <div style="width: 1030.70px; height: 59.14px; background: #00A5FF; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+    <div style="color: white; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
+        Kelas
+    </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
             <div class="p-6 bg-gray-200 rounded-lg text-center">
             <h4 class="font-bold">Kelas 7</h4>
                 <a href="/semester kelas 7"><img src="{{asset('images/Kelas 7 pic.png')}}" alt=""></a>

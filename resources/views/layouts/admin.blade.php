@@ -18,45 +18,51 @@
          
             <nav class="mt-2">
                 <ul>
-                    <li class="mb-2">
-                        <a href="/dashboard teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
+                <li class="mb-1">
+                        <a href="/dashboard admin" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
                             </svg>  Dashboard
                         </a>
                     </li>
-                    <li class="mb-2">
-                        <a href="/class teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
+                    <li class="mb-1">
+                        <a href="/data guru" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
+                        <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+
+                    </svg>  Data Guru
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="/data siswa" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                        </svg>  Kelas
+                        </svg> Data Siswa
                         </a>
                     </li>
-                    <li class="mb-2">
-                        <a href="/evaluasi teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
+                    <li class="mb-1">
+                        <a href="/data materi" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-8h-2v8H6V4h8V2zm3.79 2.79-5.5 5.5 1.42 1.42 5.5-5.5V10h2V2h-8v2h4.58z"/>
-                        </svg> Evaluasi
+                        </svg>Data Materi
                         </a>
                     </li>
-                    <li class="mb-2">
-                        <a href="/nilai perkelas guru" class="flex items-center p-3 rounded hover:bg-gray-200">
+                    <li class="mb-1">
+                        <a href="/managemen akun admin" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M4 2h14l4 4v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm13 7h-5v2h5V9zm0 4h-5v2h5v-2zM7 9l2 2 4-4-1.41-1.42L9 8.17 8.41 7.59 7 9z"/>
-                        </svg> Nilai
+                        </svg> Managemen Akun
                         </a>
                     </li>
-                    <li class="mb-2">
-                        <a href="/tentang kami guru" class="flex items-center p-3 rounded hover:bg-gray-200">
+                    <li class="mb-1">
+                        <a href="/tentang kami admin" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M11 17h2v-6h-2v6zm0-8h2V7h-2v2zm1-7C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
                             </svg> Tentang Kami
                         </a>
                     </li>
                     <br>
-                    <br>
-                <br>
-                <br>
+                   <br>
                     <li class="mb-2">
                         <a href="#" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">

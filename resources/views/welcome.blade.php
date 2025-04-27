@@ -6,17 +6,16 @@
 
         <title>E-Learning</title>
         
-        <!-- Fonts -->
+
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-        <!-- Styles -->
         <style>
 .background {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url('background.jpg'); /* Image of the laptop, glasses, coffee cup */
+    background-image: url('background.jpg'); 
     background-size: cover;
     background-position: center;
     display: flex;
@@ -114,7 +113,7 @@ h2 {
         <div style="color: #3C3C3C; font-size: 30px; font-family: Poppins; font-weight: 500; word-wrap: break-word">TECHNOOR</div>
         <div style="color: #3C3C3C; font-size: 10px; font-family: Poppins; font-weight: 600; word-wrap: break-word border: 2px">---LOGIN SEBAGAI---</div>
             <div class="buttons">
-            <a href="" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" img src="https://img.freepik.com/free-photo/empty-card-coffee-top-view_23-2148475413.jpg" height="700px" width="1350px" alt="" >
+            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" img src="https://img.freepik.com/free-photo/empty-card-coffee-top-view_23-2148475413.jpg" height="700px" width="1350px" alt="" >
             <button class="btn guru">GURU</button></a>
             <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
             <button class="btn siswa">SISWA</button></a>
