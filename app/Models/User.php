@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    User::create([
-        'name' => 'Admin',
-        'email' => 'admin@example.com',
-        'password' => bcrypt('password123'),
-    ]);
+    use HasFactory;
+    protected $table = 'users';
+
+    protected $fillable = ['class_id','name','email','password','phone','role_id','status','birth_date','address','image_path','nuptk_nis'];
+    
+    protected $dates =['created_at','updated_at'];
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
 }

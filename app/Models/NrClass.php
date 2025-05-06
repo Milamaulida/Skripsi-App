@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class NrClass extends Model
 {
-    use HasFactory;
-    protected $table = 'role';
+    protected $table = 'nr_class';
 
-    protected $fillable = ['name','email','password'];
+    protected $fillable = ['name'];
     
     protected $dates =['created_at','updated_at'];
 }

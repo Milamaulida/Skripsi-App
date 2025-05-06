@@ -9,8 +9,8 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        $subjects = Subject::get();
-        return $subjects;
+        $data = Subject::with('nrclass')->get();
+        return view('data_materi', compact('data'));
     }
     public function create(Request $request)
     {

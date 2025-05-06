@@ -8,7 +8,7 @@ use App\Http\Controllers\ValueExamController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\MyClassController;
+use App\Http\Controllers\NrClassController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Subject;
@@ -92,17 +92,6 @@ Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/dashboard student', function () {
-    return view('dashboard student');
-})->name('dashboard student');
-
-Route::get('/dashboard admin', function () {
-    return view('dashboard admin');
-})->name('dashboard admin');
-
-Route::get('/class student', function () {
-    return view('class student');
-})->name('class student');
 
 Route::get('/evaluasi student', function () {
     return view('evaluasi student');
@@ -425,13 +414,7 @@ Route::get('/tentang kami', function () {
     return view('tentang kami');
 })->name('tentang kami');
 
-Route::get('/dashboard teacher', function () {
-    return view('dashboard teacher');
-})->name('dashboard teacher');
 
-Route::get('/class teacher', function () {
-    return view('class teacher');
-})->name('class teacher');
 
 Route::get('/evaluasi teacher', function () {
     return view('evaluasi teacher');
@@ -703,9 +686,9 @@ Route::get('/tambah soal evaluasi guru esai', function () {
     return view('tambah soal evaluasi guru esai');
 })->name('tambah soal evaluasi guru esai');
 
-Route::get('/data guru', function () {
-    return view('data guru');
-})->name('data guru');
+Route::get('/data-guru', function () {
+    return view('data-guru');
+})->name('data-guru');
 
 Route::get('/data siswa', function () {
     return view('data siswa');
@@ -727,11 +710,41 @@ Route::get('/tambah data siswa', function () {
     return view('tambah data siswa');
 })->name('tambah data siswa');
 
-Route::get('/data materi', function () {
-    return view('data materi');
-})->name('data materi');
-
 Route::get('/edit materi', function () {
     return view('edit materi');
 })->name('edit materi');
+
+Route::get('/dashboard-admin', function () {
+    return view('dashboard-admin');
+})->name('dashboard-admin');
+
+Route::get('/dashboard-teacher', function () {
+    return view('dashboard-teacher');
+})->name('dashboard-teacher');
+
+Route::get('/dashboard-student', function () {
+    return view('dashboard-student');
+})->name('dashboard-student');
+
+
+
+Route::get('/data-guru', [UserController::class, 'dataGuru'])->name('data.guru');
+
+Route::get('/data-siswa', [UserController::class, 'dataSiswa']);
+
+Route::get('/managemen-akun', [UserController::class, 'managementAkun']);
+
+Route::get('/data-materi', [SubjectController::class, 'index']);
+
+Route::get('/class-teacher', [ClassNurrohmahController::class, 'index']);
+
+Route::get('/class-student', [ClassNurrohmahController::class, 'index']);
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 

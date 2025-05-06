@@ -9,4 +9,10 @@ class Answer extends Model
 {
     use HasFactory;
     protected $table = 'answer';
+
+    protected $fillable = ['question_id',
+                        'answer_text',
+                        'is_correct'];
+
+    protected $dates =['created_at','updated_at'];
 }

@@ -40,7 +40,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Tambah</button>
-        <a href="/data siswa" class="btn btn-secondary">Batal</a>
+        <a href="/data-siswa" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

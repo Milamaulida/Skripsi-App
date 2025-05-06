@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.teacher')
 @section('content')
 
 <div class="flex-1 bg-gray-50">

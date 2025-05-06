@@ -9,8 +9,8 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::get();
-        return $roles;
+        $data = Role::paginate(10);
+        return view('',compact('data'));
     }
     public function create(Request $request)
     {
@@ -41,9 +41,7 @@ class RoleController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, $id)
     {
         $roles = Role::find($id);
@@ -52,9 +50,6 @@ class RoleController extends Controller
         return $roles;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $roles = Role::find($id);

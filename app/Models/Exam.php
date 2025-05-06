@@ -9,4 +9,8 @@ class exam extends Model
 {
     use HasFactory;
     protected $table = 'exam';
+    protected $fillable = ['class_id',
+                            'type'];
+    
+    protected $dates =['created_at','updated_at'];
 }

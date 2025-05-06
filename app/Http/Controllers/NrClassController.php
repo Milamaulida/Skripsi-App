@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MyClass;
+use App\Models\NrClass;
 use Illuminate\Http\Request;
 
-class MyClassController extends Controller
+class NrClassController extends Controller
 {
     public function index()
     {
-        $classes = MyClass::get();
-        return $classes;
+        $data = NrClass::paginate(10);
+        return view('data siswa',compact('data'));
     }
     public function create(Request $request)
     {
-        $classes =new MyClass();
+        $classes =new NrClass();
         $classes->name = $request->name;
         $classes->save(); 
         return $classes;
@@ -30,7 +30,7 @@ class MyClassController extends Controller
      */
     public function show(string $id)
     {
-        return MyClass::findOrFail($id);
+        return NrClass::findOrFail($id);
     }
 
     /**
@@ -46,7 +46,7 @@ class MyClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $classes = MyClass::find($id);
+        $classes = NrClass::find($id);
         if (isset($request->name)) $classes->name = $request->name;
         $classes->save();
         return $classes;
@@ -57,7 +57,7 @@ class MyClassController extends Controller
      */
     public function destroy($id)
     {
-        $classes = MyClass::find($id);
+        $classes = NrClass::find($id);
         $classes->delete();
     }
 }

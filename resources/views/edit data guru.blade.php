@@ -35,7 +35,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Edit</button>
-        <a href="/data guru" class="btn btn-secondary">Batal</a>
+        <a href="/data-guru" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection
