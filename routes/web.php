@@ -11,13 +11,13 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\NrClassController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Subject;
 use App\Models\Role;
 use App\Models\Exam;
 use App\Models\ValueExam;
 use App\Models\Question;
 use App\Models\Answer;
-use App\Models\MyClass;
 use App\Models\User;
 use App\Http\Controllers\UploadController;
 /*
@@ -76,11 +76,11 @@ Route::get('/answer/{id}', [AnswerController::class, 'show']);
 Route::delete('/answer/delete/{id}', [AnswerController::class, 'destroy']);
 
 
-Route::get('/class', [MyClassController::class, 'index']);
-Route::post('/class/create', [MyClassController::class, 'create']);
-Route::put('/class/update{id}', [MyClassController::class, 'update']);
-Route::get('/class/{id}', [MyClassController::class, 'show']);
-Route::delete('/class/delete/{id}', [MyClassController::class, 'destroy']);
+Route::get('/class', [NrClassController::class, 'index']);
+Route::post('/class/create', [NrClassController::class, 'create']);
+Route::put('/class/update{id}', [NrClassController::class, 'update']);
+Route::get('/class/{id}', [NrClassController::class, 'show']);
+Route::delete('/class/delete/{id}', [NrClassController::class, 'destroy']);
 
 
 Route::get('/user', [UserController::class, 'index']);
@@ -93,9 +93,9 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
-Route::get('/evaluasi student', function () {
-    return view('evaluasi student');
-})->name('evaluasi student');
+Route::get('/evaluasi_student', function () {
+    return view('evaluasi_student');
+})->name('evaluasi_student');
 
 Route::get('/bab semester 1 kelas 7', function () {
     return view('bab semester 1 kelas 7');
@@ -234,9 +234,6 @@ Route::get('/materi 2 bab 8 kelas 7', function () {
     return view('materi 2 bab 8 kelas 7');
 })->name('materi 2 bab 8 kelas 7');
 
-Route::get('/semester kelas 7', function () {
-    return view('semester kelas 7');
-})->name('semester kelas 7');
 
 Route::get('/semester kelas 8', function () {
     return view('semester kelas 8');
@@ -406,9 +403,9 @@ Route::get('/soal 6 ph2 kelas 7', function () {
     return view('soal 6 ph2 kelas 7');
 })->name('soal 6 ph2 kelas 7');
 
-Route::get('/nilai student', function () {
-    return view('nilai student');
-})->name('nilai student');
+Route::get('/value_student', function () {
+    return view('value_student');
+})->name('value_student');
 
 Route::get('/tentang kami', function () {
     return view('tentang kami');
@@ -735,11 +732,21 @@ Route::get('/data-siswa', [UserController::class, 'dataSiswa']);
 Route::get('/managemen-akun', [UserController::class, 'managementAkun']);
 
 Route::get('/data-materi', [SubjectController::class, 'index']);
+Route::get('/materi-kelas-7', [SubjectController::class, 'materiKelas7']);
+Route::get('/materi-kelas-8', [SubjectController::class, 'materiKelas8']);
+Route::get('/materi-kelas-9', [SubjectController::class, 'materiKelas9']);
 
-Route::get('/class-teacher', [ClassNurrohmahController::class, 'index']);
+Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas7'])->name('subject.show.kelas7');
+Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');
+Route::get('/isi-materi-kelas-9/{id}', [SubjectController::class, 'showKelas9'])->name('subject.show.kelas9');
 
-Route::get('/class-student', [ClassNurrohmahController::class, 'index']);
 
+
+Route::get('/class-teacher', [NrClassController::class, 'index']);
+
+Route::get('/class-student', [NrClassController::class, 'index']);
+
+Route::get('/semester-kelas-7', [NrClassController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
@@ -747,4 +754,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/materi/{id}', [SubjectController::class, 'show'])->name('materi.show');
 

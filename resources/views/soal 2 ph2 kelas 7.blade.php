@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.student')
 @section('content')
 <div class="search-container">
             <span>🔍</span>

@@ -38,7 +38,7 @@
     <div class="grid grid-cols-3 gap-4">
             <div class="p-6 bg-gray-200 rounded-lg text-center">
             <h4 class="font-bold">Kelas 7</h4>
-                <a href="/semester kelas 7 guru"><img src="{{asset('images/Kelas 7 pic.png')}}" alt=""></a>
+                <a href="/semester -kelas 7 guru"><img src="{{asset('images/Kelas 7 pic.png')}}" alt=""></a>
             </div>
             <div class="p-4 bg-gray-200 rounded-lg text-center">
             <h4 class="font-bold">Kelas 8</h4>

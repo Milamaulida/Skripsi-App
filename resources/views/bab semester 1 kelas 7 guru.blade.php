@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 <div class="container mx-auto p-4">
@@ -51,5 +51,6 @@
             </a>
         </div>
     </div>
+    
 </div>
 @endsection

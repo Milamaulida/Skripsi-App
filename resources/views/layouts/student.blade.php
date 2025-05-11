@@ -8,10 +8,8 @@
 
 </head>
 <body class="bg-gray-100">
-    <div class="flex">
-        
-         <br>
-        <aside class="w-64 bg-white shadow-md min-h-screen p-5">
+    <div>
+        <aside class="fixed top-0 left-0 w-64 bg-white shadow-md h-screen p-3 z-50">
             <img src="{{ asset('images/Logo Horizontal.png') }}" alt="">
             <br>
          
@@ -32,14 +30,14 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/evaluasi-student" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="/evaluasi_student" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-8h-2v8H6V4h8V2zm3.79 2.79-5.5 5.5 1.42 1.42 5.5-5.5V10h2V2h-8v2h4.58z"/>
                         </svg> Evaluasi
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/value-student" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="/value_student" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M4 2h14l4 4v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm13 7h-5v2h5V9zm0 4h-5v2h5v-2zM7 9l2 2 4-4-1.41-1.42L9 8.17 8.41 7.59 7 9z"/>
                         </svg> Nilai
@@ -81,11 +79,12 @@
                 </ul>
             </nav>
         </aside>
-
         <!-- Main Content -->
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-6 pl-64 pt-4">
             @yield('content')
         </main>
+     
     </div>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>

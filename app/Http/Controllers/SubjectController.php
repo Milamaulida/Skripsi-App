@@ -8,10 +8,36 @@ use Illuminate\Http\Request;
 class SubjectController extends Controller
 {
     public function index()
+{
+    $subjects = Subject::all();
+    return view('materi.index', compact('subjects'));
+}
+    public function dataMateri()
     {
         $data = Subject::with('nrclass')->get();
         return view('data_materi', compact('data'));
     }
+    //Data Materi Kelas 7
+    public function materiKelas7()
+    {
+        $data = Subject::with('nrclass')->get();
+        return view('materi_kelas_7', compact('data'));
+    }
+
+      //Data Materi Kelas 8
+      public function materiKelas8()
+      {
+          $data = Subject::with('nrclass')->get();
+          return view('materi_kelas_8', compact('data'));
+      }
+
+        //Data Materi Kelas 9
+    public function materiKelas9()
+    {
+        $data = Subject::with('nrclass')->get();
+        return view('materi_kelas_9', compact('data'));
+    }
+
     public function create(Request $request)
     {
         $subjects =new Subject();
@@ -28,25 +54,36 @@ class SubjectController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        return Subject::findOrFail($id);
+        $data = Subject::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function showKelas7($id)
+    {
+        $data = Subject::findOrFail($id);
+        return view('isi_materi_kelas_7', compact('data'));
+    }
+    
+    public function showKelas8($id)
+    {
+        $data = Subject::findOrFail($id);
+        return view('isi_materi_kelas_8', compact('data'));
+    }
+
+    public function showKelas9($id)
+    {
+        $data = Subject::findOrFail($id);
+        return view('isi_materi_kelas_9', compact('data'));
+    }
+    
+    
     public function edit(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, $id)
     {
         $subjects = Subject::find($id);

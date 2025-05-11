@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.teacher')
 
 @section('content')
 <div class="container mx-auto p-4">

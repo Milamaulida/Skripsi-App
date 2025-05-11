@@ -3,7 +3,19 @@
 @section('content')
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-center">Data Siswa</h1>
-    <div class="mb-3">
+            <form method="GET" action="" class="mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="kelas" class="form-select" onchange="this.form.submit()">
+                        <option value="">-- Semua Kelas --</option>
+                        <option value="7" {{ request('kelas') == '7' ? 'selected' : '' }}>Kelas 7</option>
+                        <option value="8" {{ request('kelas') == '8' ? 'selected' : '' }}>Kelas 8</option>
+                        <option value="9" {{ request('kelas') == '9' ? 'selected' : '' }}>Kelas 9</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    <div class="mb-3 mr-8">
         <a href="/tambah data siswa"><button class="btn btn-success">+ Tambah Data Siswa</button></a>
     </div>
     <table class="table table-bordered table-striped align-middle">
@@ -12,6 +24,7 @@
                 <th>No</th>
                 <th>Foto</th>
                 <th>Nama</th>
+                <th>Kelas</th>
                 <th>NIS</th>
                 <th>Tanggal Lahir</th>
                 <th>No Telepon</th>
@@ -31,6 +44,7 @@
                     @endif
                 </td>
             <td>{{ $siswa->name }}</td>
+            <td>{{ $siswa->nrclass->name }}</td>
             <td>{{ $siswa->nis }}</td>
             <td>{{ \Carbon\Carbon::parse($siswa->birth_date)->format('d-m-Y') }}</td>
             <td>{{ $siswa->phone }}</td>

@@ -17,4 +17,9 @@ class User extends Model
     public function role(){
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
+
+        public function nrclass()
+    {
+        return $this->belongsTo(Nrclass::class, 'class_id', 'id');
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.student')
 @section('content')
 <div class="flex-1 bg-gray-50">
 <div class="flex justify-between items-center mb-8">

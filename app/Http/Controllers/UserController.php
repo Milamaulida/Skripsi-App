@@ -8,31 +8,33 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //Index Utama
     public function index()
     {
         $data = User::paginate(10);
         return view ('managemen_akun',compact('data'));
     }
-
+    //Management Akun
     public function managementAkun()
-{
-    $data = User::paginate(10);
-    return view('managemen_akun',compact('data'));
-}
+    {
+        $data = User::paginate(10);
+        return view('managemen_akun',compact('data'));
+    }
+    //Data Guru
+    public function dataGuru()
+    {
+        $data = User::whereNotNull('nuptk')->get();
 
-public function dataGuru()
-{
-    $data = User::whereNotNull('nuptk')->get();
+        return view('data_guru', compact('data'));
+    }
+    //Data Siswa
+    public function dataSiswa()
+    {
+        $data = User::whereNotNull('nis')->get();
 
-    return view('data_guru', compact('data'));
-}
+        return view('data_siswa',compact('data'));
+    }
 
-public function dataSiswa()
-{
-    $data = User::whereNotNull('nis')->get();
-
-    return view('data_siswa',compact('data'));
-}
     public function create(Request $request)  
     {
         $users =new User();
