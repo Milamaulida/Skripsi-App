@@ -35,6 +35,7 @@
         <img src="{{ asset('images/pic1.png') }}" alt="Ilustrasi" class="w-32 md:w-40">
     </div>
 
+    
     <!-- Visi Misi -->
     <div class="max-w-6xl mx-auto mb-10 bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
         <div class="md:w-1/2">
@@ -42,11 +43,11 @@
         </div>
         <div class="md:w-1/2 p-8 text-gray-800 text-justify flex flex-col justify-center">
     <h3 class="text-3xl font-bold mb-4 text-blue-600">Visi</h3>
-    <p class="mb-6 text-base font-bold leading-relaxed">
+    <p class="mb-6 text-base  leading-relaxed">
         Menjadi Lembaga Pendidikan Representatif dalam mencetak generasi bangsa yang ber-IPTEK dan ber-IMTAQ.
     </p>
     <h3 class="text-3xl font-bold mb-4 text-blue-600">Misi</h3>
-    <p class="mb-6 text-base font-bold leading-relaxed">
+    <p class="mb-6 text-base  leading-relaxed">
         Mengembangkan dan meningkatkan pondasi anak didik agar memiliki life skill, kreatif, berkualitas, serta akhlak mulia yang kokoh.
     </p>
    

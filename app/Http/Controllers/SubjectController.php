@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\NrClass;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
     public function index()
-{
-    $subjects = Subject::all();
-    return view('materi.index', compact('subjects'));
-}
-    public function dataMateri()
     {
-        $data = Subject::with('nrclass')->get();
-        return view('data_materi', compact('data'));
+    $data = Subject::all();
+        return view('learning_materials_data', compact('data'));
+    }
+
+    public function index_student(Request $request)
+    {
+        $data = Subject::get();
+        return view('subject_student', compact('data'));
     }
     //Data Materi Kelas 7
     public function materiKelas7()
@@ -38,6 +40,13 @@ class SubjectController extends Controller
         return view('materi_kelas_9', compact('data'));
     }
 
+      public function materiKelas7Guru()
+    {
+        $data = Subject::with('nrclass')->get();
+        return view('materi_kelas_7_guru', compact('data'));
+    }
+
+
     public function create(Request $request)
     {
         $subjects =new Subject();
@@ -54,30 +63,37 @@ class SubjectController extends Controller
         //
     }
 
-    public function show($id)
+    public function show($class_id)
     {
-        $data = Subject::findOrFail($id);
+        $data = Subject::where('class_id',$class_id)->get();
+        return view('learning_materials_data', compact('data'));
     }
 
-    public function showKelas7($id)
+    public function showByClass($id)
     {
-        $data = Subject::findOrFail($id);
-        return view('isi_materi_kelas_7', compact('data'));
+        $kelas   = NrClass::findOrFail($id);
+        $subjects = $kelas->subjects()->get();  // semua materi di kelas ini
+
+        return view('materi_by_class', compact('kelas', 'subjects'));
     }
-    
-    public function showKelas8($id)
+      public function showKelas7Guru($id)
     {
         $data = Subject::findOrFail($id);
-        return view('isi_materi_kelas_8', compact('data'));
+        return view('isi_materi_kelas_7_guru', compact('data'));
     }
 
-    public function showKelas9($id)
+        public function showKelas8Guru($id)
     {
         $data = Subject::findOrFail($id);
-        return view('isi_materi_kelas_9', compact('data'));
+        return view('isi_materi_kelas_8_guru', compact('data'));
     }
-    
-    
+
+        public function showKelas9Guru($id)
+    {
+        $data = Subject::findOrFail($id);
+        return view('isi_materi_kelas_9_guru', compact('data'));
+    }
+
     public function edit(string $id)
     {
         

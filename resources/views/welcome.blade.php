@@ -111,12 +111,9 @@ h2 {
         <div class="login-card">
         <img src="{{ asset('images/logo.png') }}" alt="Foto" height="140px" width="140px" alt="">
         <div style="color: #3C3C3C; font-size: 30px; font-family: Poppins; font-weight: 500; word-wrap: break-word">TECHNOOR</div>
-        <div style="color: #3C3C3C; font-size: 10px; font-family: Poppins; font-weight: 600; word-wrap: break-word border: 2px">---LOGIN SEBAGAI---</div>
             <div class="buttons">
             <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" img src="https://img.freepik.com/free-photo/empty-card-coffee-top-view_23-2148475413.jpg" height="700px" width="1350px" alt="" >
-            <button class="btn guru">GURU</button></a>
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-            <button class="btn siswa">SISWA</button></a>
+            <button class="btn guru">Login</button></a>
             </div>
         </div>
     </div>

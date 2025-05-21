@@ -3,6 +3,18 @@
 @section('content')
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-center">Data Materi</h1>
+    <form method="GET" action="" class="mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="kelas" class="form-select" onchange="this.form.submit()">
+                        <option value="">-- Semua Kelas --</option>
+                        <option value="7" {{ request('kelas') == '7' ? 'selected' : '' }}>Kelas 7</option>
+                        <option value="8" {{ request('kelas') == '8' ? 'selected' : '' }}>Kelas 8</option>
+                        <option value="9" {{ request('kelas') == '9' ? 'selected' : '' }}>Kelas 9</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     <br>
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-primary">

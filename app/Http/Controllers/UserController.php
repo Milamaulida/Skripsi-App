@@ -9,30 +9,30 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //Index Utama
-    public function index()
+    public function index(Request $request)
     {
+        dd($request->all());
         $data = User::paginate(10);
         return view ('managemen_akun',compact('data'));
     }
-    //Management Akun
     public function managementAkun()
     {
         $data = User::paginate(10);
-        return view('managemen_akun',compact('data'));
+        return view('account_management',compact('data'));
     }
     //Data Guru
     public function dataGuru()
     {
         $data = User::whereNotNull('nuptk')->get();
 
-        return view('data_guru', compact('data'));
+        return view('teacher_data', compact('data'));
     }
     //Data Siswa
     public function dataSiswa()
     {
         $data = User::whereNotNull('nis')->get();
 
-        return view('data_siswa',compact('data'));
+        return view('student_data',compact('data'));
     }
 
     public function create(Request $request)  

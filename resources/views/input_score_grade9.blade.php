@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.teacher')
 @section('content')
 <div class="search-container">
             <span>🔍</span>
@@ -6,7 +6,7 @@
             <a href="#">Search</a>
         </div>
         <div class="container mx-auto p-4">
-        <a href="/nilai perkelas guru" class="text-gray-600 flex items-center mb-4">
+        <a href="/value-teacher" class="text-gray-600 flex items-center mb-4">
         &larr; kembali
     </a>
         <br>

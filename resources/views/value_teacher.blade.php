@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <a href="/input nilai kelas 7 guru"><div class="flex flex-col gap-4">
+    <a href="/input-score-grade7"><div class="flex flex-col gap-4">
         <div class="bg-white shadow-lg rounded-lg p-2 flex items-center">
             <img src="{{ asset('images/nilai.png') }}" alt="" class="w-36 h-36 rounded-lg mr-4">
             <div class="flex-1">
@@ -12,7 +12,7 @@
             </div>
         </div>
         </a>
-    <a href="/input nilai kelas 8 guru"><div class="flex flex-col gap-4">
+    <a href="/input-score-grade8"><div class="flex flex-col gap-4">
             <div class="bg-white shadow-lg rounded-lg p-2 flex items-center">
             <img src="{{ asset('images/nilai.png') }}" alt="" class="w-36 h-36 rounded-lg mr-4">
             <div class="flex-1">
@@ -22,7 +22,7 @@
             </div>
         </div>
         </a>
-        <a href="/input nilai kelas 9 guru"><div class="flex flex-col gap-4">
+        <a href="/input-score-grade9"><div class="flex flex-col gap-4">
             <div class="bg-white shadow-lg rounded-lg p-2 flex items-center">
             <img src="{{ asset('images/nilai.png') }}" alt="" class="w-36 h-36 rounded-lg mr-4">
             <div class="flex-1">

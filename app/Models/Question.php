@@ -11,7 +11,7 @@ class Question extends Model
 
     protected $table = 'question'; 
     
-    protected $fillable = ['exam_id','class_id','type_of_question','question'];
+    protected $fillable = ['exam_id','class_id','question'];
     
     protected $dates =['created_at','updated_at'];
 

@@ -413,9 +413,7 @@ Route::get('/tentang kami', function () {
 
 
 
-Route::get('/evaluasi teacher', function () {
-    return view('evaluasi teacher');
-})->name('evaluasi teacher');
+
 
 Route::get('/nilai teacher', function () {
     return view('nilai teacher');
@@ -675,13 +673,8 @@ Route::get('/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.ed
 Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
 
 
-Route::get('/tambah soal evaluasi guru', function () {
-    return view('tambah soal evaluasi guru');
-})->name('tambah soal evaluasi guru');
 
-Route::get('/tambah soal evaluasi guru esai', function () {
-    return view('tambah soal evaluasi guru esai');
-})->name('tambah soal evaluasi guru esai');
+
 
 Route::get('/data-guru', function () {
     return view('data-guru');
@@ -724,17 +717,40 @@ Route::get('/dashboard-student', function () {
 })->name('dashboard-student');
 
 
+//Route Dashboard Admin
+Route::get('/teacher-data', [UserController::class, 'dataGuru'])->name('data.guru');
+Route::get('/student-data', [UserController::class, 'dataSiswa']);
+Route::get('/account-management', [UserController::class, 'managementAkun']);
+Route::get('/class-data', [NrClassController::class, 'classData']);
 
-Route::get('/data-guru', [UserController::class, 'dataGuru'])->name('data.guru');
+//Route Dashboard Student
+Route::get('/class-student', [NrClassController::class, 'classStudent']);
 
-Route::get('/data-siswa', [UserController::class, 'dataSiswa']);
+//Route Dashboard Teacher
+Route::get('/class-teacher', [NrClassController::class, 'classTeacher']);
+Route::get('/teacher-evaluation', [ExamController::class, 'index']);
+Route::get('/add-evaluation-question', [QuestionController::class,'index']);
+Route::get('/value-teacher', [ValueExamController::class, 'index']);
+Route::get('/input-score-grade7', [ValueExamController::class, 'inputScoreGrade7']);
+Route::get('/input-score-grade8', [ValueExamController::class, 'inputScoreGrade8']);
+Route::get('/input-score-grade9', [ValueExamController::class, 'inputScoreGrade9']);
 
-Route::get('/managemen-akun', [UserController::class, 'managementAkun']);
 
-Route::get('/data-materi', [SubjectController::class, 'index']);
-Route::get('/materi-kelas-7', [SubjectController::class, 'materiKelas7']);
-Route::get('/materi-kelas-8', [SubjectController::class, 'materiKelas8']);
-Route::get('/materi-kelas-9', [SubjectController::class, 'materiKelas9']);
+
+Route::get('/value_student', function () {
+    return view('value_student');
+})->name('value_student');
+
+
+Route::get('/evaluasi_teacher', function () {
+    return view('evaluasi_teacher');
+})->name('evaluasi_teacher');
+
+Route::get('/materi', [SubjectController::class, 'index_student'])->name('materi.index');
+Route::get('/materi/{id}', [SubjectController::class, 'show'])->name('materi.show');
+
+Route::get('/learning-materials-data', [SubjectController::class, 'index']);
+
 
 Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas7'])->name('subject.show.kelas7');
 Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');
@@ -742,20 +758,22 @@ Route::get('/isi-materi-kelas-9/{id}', [SubjectController::class, 'showKelas9'])
 
 
 
-Route::get('/class-teacher', [NrClassController::class, 'index']);
+Route::get('/materi/{classId}', [StudentController::class, 'showMateri'])->name('materi');
 
-Route::get('/class-student', [NrClassController::class, 'index']);
-
-Route::get('/semester-kelas-7', [NrClassController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-
 Route::post('/login', [AuthController::class, 'login']);
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
+
 Route::get('/materi/{id}', [SubjectController::class, 'show'])->name('materi.show');
 
+
+
+Route::get('/learning-materials-data', [SubjectController::class, 'index'])
+     ->name('classes.index');
+
+Route::get('/learning-materials-data/{id}', [SubjectController::class, 'showByClass'])
+     ->name('classes.show');

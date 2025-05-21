@@ -7,11 +7,8 @@
     </h4>
 
     <div class="mb-3">
-        <div class="btn-group" role="group">
-            <button class="btn btn-primary">Pilihan Ganda</button>
-            <a href="/tambah soal evaluasi guru esai"><button class="btn btn-outline-primary">Essay</button></a>
-        </div>
-        <a href="/evaluasi teacher"><button class="btn btn-success float-end">Selesai & Simpan</button></a>
+        <br>
+        <a href="/teacher-evaluation"><button class="btn btn-success float-end">Selesai & Simpan</button></a>
     </div>
 
     {{-- Form Input Soal Pilihan Ganda --}}

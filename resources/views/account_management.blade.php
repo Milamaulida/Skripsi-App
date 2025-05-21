@@ -27,7 +27,11 @@
                 <td>{{$value->email}}</td>
                 <td>{{$value->password}}</td>
                 <td>{{$value->role->name }}</td>
-                <td>{{$value->status}}</td>
+               <td>
+                <button style="background-color: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+                    {{ $value->status }}
+                </button>
+                </td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center gap-2">
                         <a href="/edit-akun/1" class="btn btn-warning btn-sm">Edit</a>

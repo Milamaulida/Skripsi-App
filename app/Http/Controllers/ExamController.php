@@ -9,9 +9,10 @@ class ExamController extends Controller
 {
     public function index()
     {
-        $exams = Exam::get();
-        return $exams;
+        $data = Exam::all();
+        return view('teacher_evaluation', compact('data'));
     }
+
     public function create(Request $request)
     {
         $exams =new Exam();

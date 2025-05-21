@@ -10,8 +10,26 @@ class NrClassController extends Controller
     public function index()
     {
         $data = NrClass::paginate(10);
+    }
+
+    public function classStudent()
+    {
+        $data = NrClass::paginate(10);
         return view('class_student',compact('data'));
     }
+
+    public function classTeacher()
+    {
+        $data = NrClass::paginate(10);
+        return view('class_teacher',compact('data'));
+    }
+
+    public function classData()
+    {
+        $data = NrClass::paginate(10);
+        return view('class_data',compact('data'));
+    }
+
     public function create(Request $request)
     {
         $classes =new NrClass();

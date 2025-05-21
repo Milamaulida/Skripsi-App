@@ -1,68 +1,71 @@
 @extends('layouts.teacher')
 @section('content')
-<div class="flex-1 bg-gray-50">
-<div class="flex justify-between items-center mb-8">
-    <div class="relative w-70">
-        <input type="text" placeholder="Search" class="border rounded p-2 pl-10 w-full">
-        <div class="absolute inset-y-0 left-40 flex items-center pl-3 pointer-events-none">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-            </svg>
+<div class="flex-1 bg-gray-50 px-8 py-6">
+
+ <div class="flex justify-end mb-6">
+        <div class="flex items-center space-x-4">
+            <div class="text-right">
+                <div class="font-semibold text-gray-800 text-md">Mila Maulida</div>
+                <div class="text-sm text-gray-500">1234567890</div>
+            </div>
+            <div class="relative">
+                <button id="profileButton" class="focus:outline-none">
+                    <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full border-2 border-blue-400">
+                </button>
+                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Profil</a>
+                    <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pengaturan Akun</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Keluar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="flex items-center space-x-4">
-        <div class="text-right">
-            <div class="font-bold">Mila Maulida</div>
-            <div class="text-sm text-gray-500">1234567890</div>
-        </div>
-        <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full">
-    </div>
-</div>
 
-    <div class="mt-5 bg-white text-white p-5 rounded-lg flex items-center justify-between">
+
+    <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center mb-8">
         <div>
-        <div style="color: #00A5FF; font-size: 40px; font-family: Poppins; font-weight: 700; word-wrap: break-word">BUAT MATERI &<br/>TAMBAH MATERI</div>
+            <div class="text-3xl text-[#00A5FF] font-bold leading-tight font-poppins">
+                Ayo Mulai Mengajar Bu Mila !!! <br/>
+            </div>
         </div>
-        <img src="{{ asset('images/pic2.png') }}" alt="Ilustrasi">
-
+        <img src="{{ asset('images/pic2.png') }}" alt="Ilustrasi" class="w-40">
     </div>
 
-    <div class="mt-6">
-    <div style="width: 1030.70px; height: 59.14px; background: #00A5FF; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
-  <div style="color: white; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
-    Kelas
+    <div class="rounded-t-lg bg-[#00A5FF] py-3 text-center text-white text-xl font-semibold font-poppins">
+        Kelas
+    </div>
+  
+     <div class="grid grid-cols-3 gap-4">
+    @foreach($data as $class)
+      <div class="p-6 bg-gray-200 rounded-lg text-center">
+        <h4 class="font-bold">Kelas {{ $class->name }}</h4>
+        <a href="{{ route('classes.show', $class->id) }}">
+          <img 
+            src="{{ asset('images/Kelas '.$class->name.' pic.png') }}" 
+            alt="Kelas {{ $class->name }}" 
+            class="mx-auto"
+          >
+        </a>
+      </div>
+    @endforeach
   </div>
-</div>
 
-    <div class="grid grid-cols-3 gap-4">
-            <div class="p-6 bg-gray-200 rounded-lg text-center">
-            <h4 class="font-bold">Kelas 7</h4>
-                <a href="/semester -kelas 7 guru"><img src="{{asset('images/Kelas 7 pic.png')}}" alt=""></a>
-            </div>
-            <div class="p-4 bg-gray-200 rounded-lg text-center">
-            <h4 class="font-bold">Kelas 8</h4>
-                <a href="/semester kelas 8 guru"><img src="{{asset('images/Kelas 8 pic.png')}}" alt=""></a>
-            </div>
-            <div class="p-4 bg-gray-200 rounded-lg text-center">
-                <h4 class="font-bold">Kelas 9</h4>
-                <a href="/semester kelas 9 guru"><img src="{{asset('images/Kelas 9 pic.png')}}" alt=""></a>
-            </div>
-        </div>
-    </div>
 
-    
     <div class="mt-6 grid grid-cols-2 gap-4">
        
         <div class="bg-gray-100 p-4 rounded-lg">
-        <div class="container mt-5 d-flex justify-content-center">
-        <div class="content-container">
-        <br>
-            <div class="image-content">
-            <img src="{{ asset('images/pic3.png') }}" alt="">
+            <div class="container mt-5 d-flex justify-content-center">
+                <div class="content-container">
+                <br>
+                    <div class="image-content">
+                    <img src="{{ asset('images/pic3.png') }}" alt="">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         </div>
 
       
@@ -85,3 +88,5 @@
     </div>
 </div>
 @endsection
+
+

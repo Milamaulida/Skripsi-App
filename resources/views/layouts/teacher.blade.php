@@ -7,16 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
 </head>
 <body class="bg-gray-100">
-    <div class="flex">
-        
-         <br>
-        <aside class="w-64 bg-white shadow-md min-h-screen p-3">
+    <div>
+        <aside class="fixed top-0 left-0 w-64 bg-white shadow-md h-screen p-3 z-50">
             <img src="{{ asset('images/Logo Horizontal.png') }}" alt="">
-            <br>
-         
-            <nav class="mt-2">
+           
+            <nav class="mt-5">
                 <ul>
                     <li class="mb-2">
                         <a href="/dashboard-teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
@@ -33,21 +31,21 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/evaluasi-teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="/teacher-evaluation" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-8h-2v8H6V4h8V2zm3.79 2.79-5.5 5.5 1.42 1.42 5.5-5.5V10h2V2h-8v2h4.58z"/>
-                        </svg> Evaluasi
+                        </svg> Soal Ujian
                         </a>
                     </li>
                     <li class="mb-2">
                         <a href="/value-teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M4 2h14l4 4v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm13 7h-5v2h5V9zm0 4h-5v2h5v-2zM7 9l2 2 4-4-1.41-1.42L9 8.17 8.41 7.59 7 9z"/>
-                        </svg> Nilai
+                        </svg> Input Nilai
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/tentang-kami-guru" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="tentang-kami-teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M11 17h2v-6h-2v6zm0-8h2V7h-2v2zm1-7C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
                             </svg> Tentang Kami
@@ -55,8 +53,6 @@
                     </li>
                     <br>
                     <br>
-                <br>
-                <br>
                     <li class="mb-2">
                         <a href="#" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
@@ -81,11 +77,12 @@
                 </ul>
             </nav>
         </aside>
-
         <!-- Main Content -->
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-6 pl-64 pt-4">
             @yield('content')
         </main>
+     
     </div>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>

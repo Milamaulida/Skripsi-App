@@ -2,7 +2,6 @@
 @section('content')
 <div class="flex-1 bg-gray-50 px-8 py-6">
 
- <!-- Profile Bar -->
  <div class="flex justify-end mb-6">
         <div class="flex items-center space-x-4">
             <div class="text-right">
@@ -39,55 +38,52 @@
     <div class="rounded-t-lg bg-[#00A5FF] py-3 text-center text-white text-xl font-semibold font-poppins">
         Kelas
     </div>
-
   
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-6 rounded-b-lg shadow-md mb-8">
-        @php
-            $kelas = [
-                ['nama' => 'Kelas 7', 'url' => '/materi-kelas-7', 'gambar' => 'Kelas 7 pic.png'],
-                ['nama' => 'Kelas 8', 'url' => '/materi-kelas-8', 'gambar' => 'Kelas 8 pic.png'],
-                ['nama' => 'Kelas 9', 'url' => '/materi-kelas-9', 'gambar' => 'Kelas 9 pic.png'],
-            ];
-        @endphp
+     <div class="grid grid-cols-3 gap-4">
+    @foreach($data as $class)
+      <div class="p-6 bg-gray-200 rounded-lg text-center">
+        <h4 class="font-bold">Kelas {{ $class->name }}</h4>
+        <a href="{{ route('classes.show', $class->id) }}">
+          <img 
+            src="{{ asset('images/Kelas '.$class->name.' pic.png') }}" 
+            alt="Kelas {{ $class->name }}" 
+            class="mx-auto"
+          >
+        </a>
+      </div>
+    @endforeach
+  </div>
 
-        @foreach($kelas as $k)
-        <div class="p-4 bg-gray-100 rounded-lg text-center hover:shadow-lg transition duration-200">
-            <h4 class="font-bold text-lg text-gray-800 mb-2">{{ $k['nama'] }}</h4>
-            <a href="{{ $k['url'] }}">
-                <img src="{{ asset('images/' . $k['gambar']) }}" alt="{{ $k['nama'] }}" class="mx-auto">
-            </a>
-        </div>
-        @endforeach
-    </div>
 
-    <!-- Riwayat dan Ilustrasi -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Ilustrasi -->
-        <div class="bg-gray-100 p-6 rounded-lg flex justify-center items-center shadow">
-            <img src="{{ asset('images/pic3.png') }}" alt="Ilustrasi" class="w-full max-w-sm">
-        </div>
-
-        <!-- Riwayat Belajar -->
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-            <div class="text-center text-sm text-gray-800 font-semibold font-poppins mb-4">
-                Riwayat Belajar
-            </div>
-            <div class="flex gap-4">
-                <img src="{{ asset('images/Riwayat Belajar.png') }}" alt="Riwayat Belajar" class="w-32 h-40 rounded-lg shadow">
-                <div class="flex flex-col justify-between">
-                    <div class="text-sm text-[#007DBA] font-semibold">MATERI BAB 1 KELAS 7</div>
-                    <div class="text-md text-[#FED600] font-semibold">MATERI 2</div>
-                    <div class="text-sm text-justify text-gray-700 font-medium">
-                        Morbi ipsum ipsum, congue a aliquam sit amet, faucibus vel tortor. Maecenas non porta enim. Nullam bibendum sapien est.
+     <div class="mt-6 grid grid-cols-2 gap-4">
+       
+        <div class="bg-gray-100 p-4 rounded-lg">
+            <div class="container mt-5 d-flex justify-content-center">
+                <div class="content-container">
+                <br>
+                    <div class="image-content">
+                    <img src="{{ asset('images/pic3.png') }}" alt="">
                     </div>
-                    <a href="#">
-                        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg mt-2">
-                            Lanjut Pelajari
-                        </button>
-                    </a>
                 </div>
             </div>
+        </div>
+
+      
+        <div class="bg-gray-100 p-4 rounded-lg">
+        <center><div style="width: 117px; height: 22px; color: #3C3C3C; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Belajar</div></center>
+        <br>
+        <div class="flex items-center space-x-4">
+            <img src="{{ asset('images/Riwayat Belajar.png') }}" alt="" class="w-30 h-40 rounded-lg shadow-lg">
+            <div class="text-content">
+            <div style="width: 100%; height: 100%; position: relative; color: #007DBA; font-size: 13px; font-family: Poppins; font-weight: 600; word-wrap: break-word">MATERI BAB 1 KELAS 7</div>
+            <div style="width: 100%; height: 100%; position: relative; color: #FED600; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">MATERI 2</div>
+            <div style="width: 100%; height: 100%; position: relative; text-align: justify; justify-content: center; display: flex; flex-direction: column; color: #3C3C3C; font-size: 15px; font-family: Poppins; font-weight: 500; word-wrap: break-word">Morbi ipsum ipsum, congue a aliquam sit amet, faucibus vel tortor. Maecenas non porta enim. Nullam bibendum sapien est.</div>
+            <a href=""><button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-2 rounded-lg right-10">
+                Lanjut Pelajari
+            </button></a>
+            </div>
+        </div>
+        </div>
         </div>
     </div>
     <script>

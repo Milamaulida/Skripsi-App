@@ -9,9 +9,30 @@ class ValueExamController extends Controller
 {
     public function index()
     {
-        $valueExams = ValueExam::get();
-        return $valueExams;
+        $data = ValueExam::all();
+        return view('value_teacher', compact('data'));
     }
+
+    public function inputScoreGrade7()
+    {
+        $data = ValueExam::all();
+        return view('input_score_grade7', compact('data'));
+    }
+
+    
+    public function inputScoreGrade8()
+    {
+        $data = ValueExam::all();
+        return view('input_score_grade8', compact('data'));
+    }
+
+    
+    public function inputScoreGrade9()
+    {
+        $data = ValueExam::all();
+        return view('input_score_grade9', compact('data'));
+    }
+
     public function create(Request $request)
     {
         $valuesExams =new valueExam();

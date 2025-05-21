@@ -12,4 +12,9 @@ class NrClass extends Model
     protected $fillable = ['name'];
     
     protected $dates =['created_at','updated_at'];
+
+     public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'class_id');
+    }
 }

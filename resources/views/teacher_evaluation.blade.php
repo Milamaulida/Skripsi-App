@@ -15,7 +15,7 @@
     </div>
 
     <div class="mb-3">
-        <a href="/tambah soal evaluasi guru"><button class="btn btn-success">+ Tambah Soal</button></a>
+        <a href="/add-evaluation-question"><button class="btn btn-success">+ Tambah Soal</button></a>
         <button class="btn btn-danger">Hapus Semua</button>
     </div>
 

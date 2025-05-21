@@ -9,15 +9,15 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $questions = Question::get();
-        return $questions;
+        $data = Question::all();
+        return view('add_evaluation_question', compact('data'));
+
     }
     public function create(Request $request)
     {
         $questions =new Question();
         $questions->exam_id = $request->exam_id;
         $questions->class_id = $request->class_id;
-        $questions->type_of_question = $request->type_of_question;
         $questions->question= $request->question;
         $questions->save(); 
         return $questions;
@@ -52,7 +52,6 @@ class QuestionController extends Controller
         $questions = Question::find($id);
         if (isset($request->exam_id)) $questions->exam_id = $request->exam_id;
         if (isset($request->class_id)) $questions->class_id = $request->class_id;
-        if (isset($request->type_of_question)) $questions->type_of_question = $request->type_of_question;
         if (isset($request->question)) $questions->question = $request->question;
         $questions->save();
         return $questions;
