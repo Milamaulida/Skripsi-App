@@ -43,7 +43,7 @@
     @foreach($data as $class)
       <div class="p-6 bg-gray-200 rounded-lg text-center">
         <h4 class="font-bold">Kelas {{ $class->name }}</h4>
-        <a href="{{ route('classes.show', $class->id) }}">
+        <a href="{{ route('teacher-materials', $class->id) }}">
           <img 
             src="{{ asset('images/Kelas '.$class->name.' pic.png') }}" 
             alt="Kelas {{ $class->name }}" 

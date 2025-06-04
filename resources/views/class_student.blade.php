@@ -14,11 +14,7 @@
                 </button>
                 <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
                     <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Profil</a>
-                    <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pengaturan Akun</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Keluar</button>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -43,7 +39,7 @@
     @foreach($data as $class)
       <div class="p-6 bg-gray-200 rounded-lg text-center">
         <h4 class="font-bold">Kelas {{ $class->name }}</h4>
-        <a href="{{ route('classes.show', $class->id) }}">
+        <a href="{{ route('subject-by-class', $class->id) }}">
           <img 
             src="{{ asset('images/Kelas '.$class->name.' pic.png') }}" 
             alt="Kelas {{ $class->name }}" 

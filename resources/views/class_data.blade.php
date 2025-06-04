@@ -3,6 +3,10 @@
 @section('content')
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-center">Data Kelas</h1>
+
+    <div class="mb-3">
+        <a href="/tambah-akun" class="btn btn-success">+ Tambah Kelas</a>
+    </div>
             
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-primary">

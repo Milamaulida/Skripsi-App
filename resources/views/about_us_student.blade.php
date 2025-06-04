@@ -1,30 +1,32 @@
 @extends('layouts.student')
 @section('content')
 <div class="flex-1 bg-gray-50">
-<div class="flex justify-between items-center mb-8">
-    <div class="relative w-70">
-        <input type="text" placeholder="Search" class="border rounded p-2 pl-10 w-full">
-        <div class="absolute inset-y-0 left-40 flex items-center pl-3 pointer-events-none">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-            </svg>
+
+<div class="flex justify-end mb-6">
+        <div class="flex items-center space-x-4">
+            <div class="text-right">
+                <div class="font-semibold text-gray-800 text-md">Mila Maulida</div>
+                <div class="text-sm text-gray-500">1234567890</div>
+            </div>
+            <div class="relative">
+                <button id="profileButton" class="focus:outline-none">
+                    <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full border-2 border-blue-400">
+                </button>
+                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Profil</a>
+                   
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="flex items-center space-x-4">
-        <div class="text-right">
-            <div class="font-bold">Mila Maulida</div>
-            <div class="text-sm text-gray-500">1234567890</div>
-        </div>
-        <img src="{{ asset('images/profile.jpeg') }}" alt="Profile" class="w-12 h-12 rounded-full">
-    </div>
-</div>
-
-    <div class="mt-5 bg-white text-white p-5 rounded-lg flex items-center justify-between">
+   <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center mb-8">
         <div>
-        <div style="color: #00A5FF; font-size: 40px; font-family: Poppins; font-weight: 700; word-wrap: break-word">KONTAK PENGEMBANG &<br/>TENTANG KAMI</div>
+            <div class="text-3xl text-[#00A5FF] font-bold leading-tight font-poppins">
+                Kontak Pengembang Aplikasi<br/>
+            </div>
         </div>
-        <img src="{{ asset('images/pic2.png') }}" alt="Ilustrasi">
+        <img src="{{ asset('images/pic2.png') }}" alt="Ilustrasi" class="w-40">
     </div>
 
     <div class="max-w-6xl mx-auto py-8 px-4">
@@ -77,7 +79,22 @@
         <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-24 bg-white rounded-l-full"></div>
     </div>
 </div>
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileButton = document.getElementById('profileButton');
+        const profileMenu = document.getElementById('profileMenu');
 
+        profileButton.addEventListener('click', function () {
+            profileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+                profileMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
     
     
 </div>

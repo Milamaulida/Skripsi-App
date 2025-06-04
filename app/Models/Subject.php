@@ -25,4 +25,10 @@ class Subject extends Model
     {
         return $this->belongsTo(NrClass::class, 'class_id', 'id');
     }
+
+    public function subjecttopic()
+    {
+    return $this->belongsTo(SubjectTopic::class, 'subject_topic_id');
+    }
+   
 }

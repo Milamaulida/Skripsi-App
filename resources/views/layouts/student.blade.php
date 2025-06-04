@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="tentang-kami-student" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="about-us-student" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M11 17h2v-6h-2v6zm0-8h2V7h-2v2zm1-7C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
                             </svg> Tentang Kami

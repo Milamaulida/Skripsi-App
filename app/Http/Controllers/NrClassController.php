@@ -46,9 +46,10 @@ class NrClassController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        return NrClass::findOrFail($id);
+        $data = NrClass::with('subjecttopic')->findOrFail($id);
+        return view ('materi_by_class', compact('data'));
     }
 
     /**
