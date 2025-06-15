@@ -15,32 +15,34 @@ class NrClassController extends Controller
     public function classStudent()
     {
         $data = NrClass::paginate(10);
-        return view('class_student',compact('data'));
+        return view('class_student', compact('data'));
     }
 
     public function classTeacher()
     {
         $data = NrClass::paginate(10);
-        return view('class_teacher',compact('data'));
+        return view('class_teacher', compact('data'));
     }
 
     public function classData()
     {
         $data = NrClass::paginate(10);
-        return view('class_data',compact('data'));
+        return view('class_data', compact('data'));
     }
 
     public function create(Request $request)
     {
-        $classes =new NrClass();
-        $classes->name = $request->name;
-        $classes->save(); 
-        return $classes;
+        return view('add_class');
     }
 
     public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $class = new NrClass();
+        $class->name = $name;
+        $class->save();
+
+        return redirect()->route('class.data')->with('success', 'Kelas berhasil ditambahkan!');
     }
 
     /**
@@ -49,7 +51,7 @@ class NrClassController extends Controller
     public function show($id)
     {
         $data = NrClass::with('subjecttopic')->findOrFail($id);
-        return view ('materi_by_class', compact('data'));
+        return view('materi_by_class', compact('data'));
     }
 
     /**
@@ -66,7 +68,8 @@ class NrClassController extends Controller
     public function update(Request $request, $id)
     {
         $classes = NrClass::find($id);
-        if (isset($request->name)) $classes->name = $request->name;
+        if (isset($request->name))
+            $classes->name = $request->name;
         $classes->save();
         return $classes;
     }

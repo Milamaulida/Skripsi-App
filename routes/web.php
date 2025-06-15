@@ -85,7 +85,7 @@ Route::delete('/class/delete/{id}', [NrClassController::class, 'destroy']);
 
 
 Route::get('/user', [UserController::class, 'index']);
-Route::post('/user/create', [UserController::class, 'create']);
+Route::post('/user/create', [UserController::class, 'create']); 
 Route::put('/user/update{id}', [UserController::class, 'update']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
@@ -274,7 +274,12 @@ Route::get('/dashboard-student', function () {
 Route::get('/teacher-data', [UserController::class, 'dataGuru'])->name('data.guru');
 Route::get('/student-data', [UserController::class, 'dataSiswa']);
 Route::get('/account-management', [UserController::class, 'managementAkun']);
-Route::get('/class-data', [NrClassController::class, 'classData']);
+
+Route::get('/class-data', [NrClassController::class, 'classData'])->name('class.data');
+Route::post('/nrclass/create', [NrClassController::class, 'create']); 
+
+Route::get('/classes/create', [NrClassController::class, 'create'])->name('classes.create');
+Route::post('/classes', [NrClassController::class, 'store'])->name('classes.store');
 
 //Route Dashboard Student
 Route::get('/class-student', [NrClassController::class, 'classStudent']);
@@ -294,7 +299,6 @@ Route::get('/class/{id}', [ClassController::class, 'show'])->name('classes.show'
 Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
 
 Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
-Route::put
 
 Route::get('/value_student', function () {
     return view('value_student');

@@ -1,5 +1,4 @@
 @extends('layouts.student')
-
 @section('content')
 <div class="container mx-auto p-4">
     <a href="/class-student" class="text-gray-600 flex items-center mb-4">
@@ -7,7 +6,6 @@
     </a>
     
     <div class="flex flex-col gap-4">
-
         @foreach($data as $materi)
         <div class="bg-white shadow-lg rounded-lg p-4 flex items-center">
             <img src="{{ asset('images/bab.png') }}" alt="Materi" class="w-36 h-36 rounded-lg mr-4">

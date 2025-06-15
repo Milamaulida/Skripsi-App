@@ -23,15 +23,11 @@ class UserController extends Controller
     //Data Guru
     public function dataGuru()
     {
-        $data = User::whereNotNull('nuptk')->get();
-
         return view('teacher_data', compact('data'));
     }
     //Data Siswa
     public function dataSiswa()
     {
-        $data = User::whereNotNull('nis')->get();
-
         return view('student_data',compact('data'));
     }
 
