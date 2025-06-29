@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2025 pada 04.53
+-- Waktu pembuatan: 29 Jun 2025 pada 09.27
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -142,7 +142,12 @@ CREATE TABLE `nr_class` (
 INSERT INTO `nr_class` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, '7', '2025-05-06 05:02:32', '2025-05-06 05:02:32'),
 (2, '8', '2025-05-06 05:02:32', '2025-05-06 05:02:32'),
-(3, '9', '2025-05-06 05:02:54', '2025-05-06 05:02:54');
+(3, '9', '2025-05-06 05:02:54', '2025-05-06 05:02:54'),
+(4, '10', '2025-06-08 03:01:01', '2025-06-08 03:01:01'),
+(5, '11', '2025-06-08 03:01:17', '2025-06-08 03:01:17'),
+(6, '14', '2025-06-08 03:13:41', '2025-06-08 03:13:41'),
+(7, '18', '2025-06-08 03:46:48', '2025-06-08 03:46:48'),
+(8, '21', '2025-06-08 04:00:29', '2025-06-08 04:00:29');
 
 -- --------------------------------------------------------
 
@@ -323,9 +328,8 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
   `phone` int(11) NOT NULL,
+  `identification_number` int(255) NOT NULL,
   `role_id` int(100) NOT NULL,
-  `nuptk` int(16) DEFAULT NULL,
-  `nis` int(10) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
   `birth_date` date NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -336,10 +340,10 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `class_id`, `name`, `email`, `password`, `phone`, `role_id`, `nuptk`, `nis`, `status`, `birth_date`, `address`, `image_path`) VALUES
-(1, NULL, 'Mila Maulida', 'maulidamila07@gmail.com', 'Mila070903', 813164732, 2, 1234567, NULL, 'Active', '2025-05-06', 'Jl.menggee girang 1 no.39', '123'),
-(2, 1, 'Bramara Saddad Minthadara', 'Bramara@gmail.com', 'Bram12345', 813164732, 1, NULL, NULL, 'Active', '2025-05-06', 'Jl.MOh toha', '1'),
-(3, 2, 'Zaskia Sungkar', 'zaskia@gmail.com', '12345', 92849272, 3, NULL, 1234678901, 'active', '2025-02-02', 'Jl.Sunda 23', '');
+INSERT INTO `users` (`id`, `class_id`, `name`, `email`, `password`, `phone`, `identification_number`, `role_id`, `status`, `birth_date`, `address`, `image_path`) VALUES
+(1, NULL, 'Mila Maulida', 'maulidamila07@gmail.com', 'Mila070903', 813164732, 457769, 2, 'Active', '2025-05-06', 'Jl.mengger girang 1 no.39', 'png'),
+(2, 1, 'Bramara Saddad Minthadara', 'Bramara@gmail.com', 'Bram12345', 813164732, 1233, 3, 'Active', '2025-05-06', 'Jl.MOh toha', 'png'),
+(3, 2, 'Zaskia Sungkar', 'zaskia@gmail.com', '12345', 892849272, 789879, 3, 'active', '2025-02-02', 'Jl.Sunda 23', 'png');
 
 -- --------------------------------------------------------
 
@@ -461,8 +465,7 @@ ALTER TABLE `subject_topic`
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `user_exam`
@@ -508,7 +511,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `nr_class`
 --
 ALTER TABLE `nr_class`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
