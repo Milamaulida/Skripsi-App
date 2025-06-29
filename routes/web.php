@@ -40,7 +40,7 @@ Route::get('/subject', [SubjectController::class, 'index']);
 Route::post('/subject/create', [SubjectController::class, 'create']);
 Route::put('/subject/update{id}', [SubjectController::class, 'update']);
 Route::get('/subject/{id}', [SubjectController::class, 'show']);
-Route::delete('/subject/delete/{id}',[SubjectController::class, 'destroy'] );
+Route::delete('/subject/delete/{id}', [SubjectController::class, 'destroy']);
 
 Route::get('/role', [RoleController::class, 'index']);
 Route::post('/role/create', [RoleController::class, 'create']);
@@ -85,7 +85,7 @@ Route::delete('/class/delete/{id}', [NrClassController::class, 'destroy']);
 
 
 Route::get('/user', [UserController::class, 'index']);
-Route::post('/user/create', [UserController::class, 'create']); 
+Route::post('/user/create', [UserController::class, 'create']);
 Route::put('/user/update{id}', [UserController::class, 'update']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
@@ -109,138 +109,14 @@ Route::get('/tentang kami', function () {
 
 Route::post('/ckeditor/upload', [UploadController::class, 'upload'])->name('ckeditor.upload');
 
-Route::get('/edit materi bab 1 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 1 kelas 7 semester 1 guru');
-})->name('edit materi bab 1 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 2 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 2 kelas 7 semester 1 guru');
-})->name('edit materi bab 2 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 3 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 3 kelas 7 semester 1 guru');
-})->name('edit materi bab 3 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 4 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 4 kelas 7 semester 1 guru');
-})->name('edit materi bab 4 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 5 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 5 kelas 7 semester 1 guru');
-})->name('edit materi bab 5 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 6 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 6 kelas 7 semester 1 guru');
-})->name('edit materi bab 6 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 7 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 7 kelas 7 semester 1 guru');
-})->name('edit materi bab 7 kelas 7 semester 1 guru');
-
-Route::get('/edit materi bab 8 kelas 7 semester 1 guru', function () {
-    return view('edit materi bab 8 kelas 7 semester 1 guru');
-})->name('edit materi bab 8 kelas 7 semester 1 guru');
-
-Route::get('/bab semester 2 kelas 7 guru', function () {
-    return view('bab semester 2 kelas 7 guru');
-})->name('bab semester 2 kelas 7 guru');
-
-Route::get('/bab semester 1 kelas 8 guru', function () {
-    return view('bab semester 1 kelas 8 guru');
-})->name('bab semester 1 kelas 8 guru');
-
-Route::get('/bab semester 2 kelas 8 guru', function () {
-    return view('bab semester 2 kelas 8 guru');
-})->name('bab semester 2 kelas 8 guru');
-
-Route::get('/bab semester 1 kelas 9 guru', function () {
-    return view('bab semester 1 kelas 9 guru');
-})->name('bab semester 1 kelas 9 guru');
-
-Route::get('/bab semester 2 kelas 9 guru', function () {
-    return view('bab semester 2 kelas 9 guru');
-})->name('bab semester 2 kelas 9 guru');
-
-
-Route::get('/edit materi bab 1 kelas 8 semester 1 guru', function () {
-    return view('edit materi bab 1 kelas 8 semester 1 guru');
-})->name('edit materi bab 1 kelas 8 semester 1 guru');
-
-Route::get('/edit materi bab 2 kelas 8 semester 1 guru', function () {
-    return view('edit materi bab 2 kelas 8 semester 1 guru');
-})->name('edit materi bab 2 kelas 8 semester 1 guru');
-
-Route::get('/edit materi bab 3 kelas 8 semester 1 guru', function () {
-    return view('edit materi bab 3 kelas 8 semester 1 guru');
-})->name('edit materi bab 3 kelas 8 semester 1 guru');
-
-Route::get('/edit materi bab 4 kelas 8 semester 1 guru', function () {
-    return view('edit materi bab 4 kelas 8 semester 1 guru');
-})->name('edit materi bab 4 kelas 8 semester 1 guru');
-
-Route::get('/edit materi bab 5 kelas 8 semester 2 guru', function () {
-    return view('edit materi bab 5 kelas 8 semester 2 guru');
-})->name('edit materi bab 5 kelas 8 semester 2 guru');
-
-Route::get('/edit materi bab 6 kelas 8 semester 2 guru', function () {
-    return view('edit materi bab 6 kelas 8 semester 2 guru');
-})->name('edit materi bab 6 kelas 8 semester 2 guru');
-
-Route::get('/edit materi bab 7 kelas 8 semester 2 guru', function () {
-    return view('edit materi bab 7 kelas 8 semester 2 guru');
-})->name('edit materi bab 7 kelas 8 semester 2 guru');
-
-Route::get('/edit materi bab 8 kelas 8 semester 2 guru', function () {
-    return view('edit materi bab 8 kelas 8 semester 2 guru');
-})->name('edit materi bab 8 kelas 8 semester 2 guru');
-
-Route::get('/edit materi bab 1 kelas 9 semester 1 guru', function () {
-    return view('edit materi bab 1 kelas 9 semester 1 guru');
-})->name('edit materi bab 1 kelas 9 semester 1 guru');
-
-Route::get('/edit materi bab 2 kelas 9 semester 1 guru', function () {
-    return view('edit materi bab 2 kelas 9 semester 1 guru');
-})->name('edit materi bab 2 kelas 9 semester 1 guru');
-
-Route::get('/edit materi bab 3 kelas 9 semester 1 guru', function () {
-    return view('edit materi bab 3 kelas 9 semester 1 guru');
-})->name('edit materi bab 3 kelas 9 semester 1 guru');
-
-Route::get('/edit materi bab 4 kelas 9 semester 1 guru', function () {
-    return view('edit materi bab 4 kelas 9 semester 1 guru');
-})->name('edit materi bab 4 kelas 9 semester 1 guru');
-
-Route::get('/edit materi bab 5 kelas 9 semester 2 guru', function () {
-    return view('edit materi bab 5 kelas 9 semester 2 guru');
-})->name('edit materi bab 5 kelas 9 semester 2 guru');
-
-Route::get('/edit materi bab 6 kelas 9 semester 2 guru', function () {
-    return view('edit materi bab 6 kelas 9 semester 2 guru');
-})->name('edit materi bab 6 kelas 9 semester 2 guru');
-
-Route::get('/edit materi bab 7 kelas 9 semester 2 guru', function () {
-    return view('edit materi bab 7 kelas 9 semester 2 guru');
-})->name('edit materi bab 7 kelas 9 semester 2 guru');
-
-Route::get('/edit materi bab 8 kelas 9 semester 2 guru', function () {
-    return view('edit materi bab 8 kelas 9 semester 2 guru');
-})->name('edit materi bab 8 kelas 9 semester 2 guru');
-
-Route::get('/nilai perkelas guru', function () {
-    return view('nilai perkelas guru');
-})->name('nilai perkelas guru');
-
-Route::get('/input nilai kelas 7 guru', function () {
-    return view('input nilai kelas 7 guru');
-})->name('input nilai kelas 7 guru');
-
-Route::get('/input nilai kelas 8 guru', function () {
-    return view('input nilai kelas 8 guru');
-})->name('input nilai kelas 8 guru');
 
 Route::get('/input nilai kelas 9 guru', function () {
     return view('input nilai kelas 9 guru');
 })->name('input nilai kelas 9 guru');
+
+Route::get('/subject/create', [SubjectController::class, 'create'])->name('subject.create');
+Route::post('/subject/store', [SubjectController::class, 'store'])->name('subject.store');
+
 
 Route::get('/tentang kami guru', function () {
     return view('tentang kami guru');
@@ -256,6 +132,10 @@ Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.updat
 Route::get('/about-us-student', function () {
     return view('about_us_student');
 })->name('about-us-student');
+
+Route::get('/about-us-teacher', function () {
+    return view('about_us_teacher');
+})->name('about-us-teacher');
 
 Route::get('/dashboard-admin', function () {
     return view('dashboard_admin');
@@ -276,7 +156,7 @@ Route::get('/student-data', [UserController::class, 'dataSiswa']);
 Route::get('/account-management', [UserController::class, 'managementAkun']);
 
 Route::get('/class-data', [NrClassController::class, 'classData'])->name('class.data');
-Route::post('/nrclass/create', [NrClassController::class, 'create']); 
+Route::post('/nrclass/create', [NrClassController::class, 'create']);
 
 Route::get('/classes/create', [NrClassController::class, 'create'])->name('classes.create');
 Route::post('/classes', [NrClassController::class, 'store'])->name('classes.store');
@@ -287,7 +167,7 @@ Route::get('/class-student', [NrClassController::class, 'classStudent']);
 //Route Dashboard Teacher
 Route::get('/class-teacher', [NrClassController::class, 'classTeacher']);
 Route::get('/teacher-evaluation', [ExamController::class, 'index']);
-Route::get('/add-evaluation-question', [QuestionController::class,'index']);
+Route::get('/add-evaluation-question', [QuestionController::class, 'index']);
 Route::get('/value-teacher', [ValueExamController::class, 'index']);
 Route::get('/input-score-grade7', [ValueExamController::class, 'inputScoreGrade7']);
 Route::get('/input-score-grade8', [ValueExamController::class, 'inputScoreGrade8']);
@@ -314,6 +194,9 @@ Route::get('/evaluasi_teacher', function () {
 Route::get('/learning-materials-data', [SubjectController::class, 'index']);
 Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials']);
 Route::get('/teacher-materials/{class_id}', [SubjectController::class, 'showMaterialsByClass'])->name('teacher-materials');
+Route::get('/add_teacher_materials', [SubjectController::class, 'create'])->name('subject.create');
+Route::post('/subject', [SubjectController::class, 'store'])->name('subject.store');
+
 
 Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas'])->name('subject.show.kelas7');
 Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');

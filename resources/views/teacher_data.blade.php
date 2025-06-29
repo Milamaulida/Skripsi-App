@@ -4,9 +4,7 @@
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-center">Data Guru</h1>
     <br>
-    <div class="mb-3">
-        <a href="/tambah-akun" class="btn btn-success">+ Tambah Data Guru</a>
-    </div>
+   
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-primary">
             <tr>
@@ -32,7 +30,7 @@
                     @endif
                 </td>
                 <td>{{ $guru->name }}</td>
-                <td>{{ $guru->nuptk }}</td>
+                <td>{{ $guru->identification_number }}</td>
                 <td>{{ \Carbon\Carbon::parse($guru->birth_date)->format('d-m-Y') }}</td>
                 <td>{{ $guru->address }}</td>
                 <td class="text-center">

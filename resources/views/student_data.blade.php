@@ -15,9 +15,6 @@
                 </div>
             </div>
         </form>
-    <div class="mb-3 mr-8">
-        <a href="/tambah data siswa"><button class="btn btn-success">+ Tambah Data Siswa</button></a>
-    </div>
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-primary">
             <tr>
@@ -45,7 +42,7 @@
                 </td>
             <td>{{ $siswa->name }}</td>
             <td>{{ $siswa->nrclass->name }}</td>
-            <td>{{ $siswa->nis }}</td>
+            <td>{{ $siswa->identification_number }}</td>
             <td>{{ \Carbon\Carbon::parse($siswa->birth_date)->format('d-m-Y') }}</td>
             <td>{{ $siswa->phone }}</td>
             <td>{{ $siswa->address }}</td>

@@ -29,8 +29,7 @@ class SubjectTopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+           }
 
     /**
      * Display the specified resource.

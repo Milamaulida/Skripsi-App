@@ -23,18 +23,22 @@ class SubjectController extends Controller
 
     public function create(Request $request)
     {
-        $subjects =new Subject();
-        $subjects->title = $request->title;
-        $subjects->description = $request->description;
-        $subjects->teacher_id = $request->teacher_id;
-        $subjects->class_id = $request->class_id;
-        $subjects->save(); 
-        return $subjects;
+        return view('add_teacher_materials');
     }
 
     public function store(Request $request)
     {
-        //
+         $validated = $request->validate([
+        'content' => 'required|string',
+    ]);
+
+    // Simpan ke database
+    Post::create([
+        'content' => $validated['content'],
+    ]);
+
+    return redirect()->route('post.index')->with('success', 'Post berhasil disimpan.');
+
     }
 
     public function show($class_id)

@@ -12,7 +12,6 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Role</th>
                 <th>Status</th>
                 <th>Aksi</th>
@@ -25,7 +24,6 @@
                 <td>{{ $no++ }}</td>
                 <td>{{$value->name}}</td>
                 <td>{{$value->email}}</td>
-                <td>{{$value->password}}</td>
                 <td>{{$value->role->name }}</td>
                <td>
                 <button style="background-color: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
