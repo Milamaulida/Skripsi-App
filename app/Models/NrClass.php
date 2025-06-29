@@ -18,10 +18,10 @@ class NrClass extends Model
         return $this->hasMany(Subject::class, 'class_id');
     }
 
-    public function subjecttopic()
-    {
-        return $this->hasMay(SubjectTopic::class, 'class_id');
-    }
+   public function subjecttopic()
+{
+    return $this->hasMany(SubjectTopic::class, 'class_id');
+}
 
    
 }

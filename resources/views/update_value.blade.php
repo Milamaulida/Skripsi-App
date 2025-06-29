@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-<a href="/input nilai kelas 7 guru" class="text-gray-600 flex items-center mb-4">
+<a href="/value-teacher" class="text-gray-600 flex items-center mb-4">
         &larr; kembali
     </a>
     <div class="card shadow-lg border-0 rounded-4">

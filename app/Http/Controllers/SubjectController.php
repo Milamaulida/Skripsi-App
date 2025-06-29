@@ -23,7 +23,7 @@ class SubjectController extends Controller
 
     public function create(Request $request)
     {
-        return view('add_teacher_materials');
+        
     }
 
     public function store(Request $request)

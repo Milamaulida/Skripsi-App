@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -12,6 +14,12 @@ class ExamController extends Controller
         $data = Exam::all();
         return view('teacher_evaluation', compact('data'));
     }
+    public function studentEvaluation()
+    {
+        $data = Exam::with('nrclass')->get();
+        return view('evaluasi_student', compact('data'));
+    }
+    
 
     public function create(Request $request)
     {
@@ -35,6 +43,27 @@ class ExamController extends Controller
         return Exam::findOrFail($id);
     }
 
+    public function showQuestion($examId, $number = 1)
+{
+    $exam = Exam::with('nrclass')->findOrFail($examId);
+
+    $questions = Question::with('answers')
+        ->where('exam_id', $examId)
+        ->get();
+
+    $question = $questions[$number - 1] ?? null;
+
+    if (!$question) {
+        return redirect()->route('exam.start', $examId)->with('error', 'Soal tidak ditemukan.');
+    }
+
+    return view('start_evaluation', [
+        'exam' => $exam,
+        'question' => $question,
+        'number' => $number,
+        'total' => $questions->count()
+    ]);
+}
     /**
      * Show the form for editing the specified resource.
      */

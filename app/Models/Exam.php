@@ -13,4 +13,8 @@ class exam extends Model
                             'type'];
     
     protected $dates =['created_at','updated_at'];
+     public function nrclass()
+    {
+        return $this->belongsTo(Nrclass::class, 'class_id', 'id');
+    }
 }

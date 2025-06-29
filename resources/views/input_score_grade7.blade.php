@@ -12,7 +12,7 @@
         <br>
         <div class="flex justify-between items-center mb-4">
         <div class="space-x-2">
-            <a href="/edit nilai"><button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded">
+            <a href="/update-value"><button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded">
                 + Edit Nilai
             </button></a>
             <button class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded">

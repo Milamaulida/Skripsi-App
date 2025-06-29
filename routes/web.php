@@ -93,14 +93,14 @@ Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-
-Route::get('/evaluasi_student', function () {
-    return view('evaluasi_student');
-})->name('evaluasi_student');
+Route::get('/evaluasi', [ExamController::class, 'studentEvaluation'])->name('evaluasi_student');
 
 Route::get('/value_student', function () {
     return view('value_student');
 })->name('value_student');
+
+Route::get('/exam/{exam}/question/{number?}', [ExamController::class, 'showQuestion'])->name('exam.question');
+
 
 Route::get('/tentang kami', function () {
     return view('tentang kami');
@@ -168,7 +168,9 @@ Route::get('/class-student', [NrClassController::class, 'classStudent']);
 Route::get('/class-teacher', [NrClassController::class, 'classTeacher']);
 Route::get('/teacher-evaluation', [ExamController::class, 'index']);
 Route::get('/add-evaluation-question', [QuestionController::class, 'index']);
+
 Route::get('/value-teacher', [ValueExamController::class, 'index']);
+ 
 Route::get('/input-score-grade7', [ValueExamController::class, 'inputScoreGrade7']);
 Route::get('/input-score-grade8', [ValueExamController::class, 'inputScoreGrade8']);
 Route::get('/input-score-grade9', [ValueExamController::class, 'inputScoreGrade9']);
@@ -189,6 +191,9 @@ Route::get('/evaluasi_teacher', function () {
     return view('evaluasi_teacher');
 })->name('evaluasi_teacher');
 
+Route::get('/update-value', function () {
+    return view('update_value');
+})->name('update_value');
 
 
 Route::get('/learning-materials-data', [SubjectController::class, 'index']);

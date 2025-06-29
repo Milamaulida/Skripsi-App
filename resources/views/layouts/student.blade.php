@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/evaluasi_student" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="/evaluasi" class="flex items-center p-3 rounded hover:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d" viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-8h-2v8H6V4h8V2zm3.79 2.79-5.5 5.5 1.42 1.42 5.5-5.5V10h2V2h-8v2h4.58z"/>
                         </svg> Evaluasi
