@@ -23,18 +23,18 @@ class UserController extends Controller
     //Data Guru
     public function dataGuru()
     {
-        $data = User::where('role_id', 2)->paginate(10);
+        $data = User::where('role_id', 3)->paginate(10);
         return view('teacher_data', compact('data'));
     }
     //Data Siswa
     public function dataSiswa()
     {
-        
-        $data = User::where('role_id', 3)->paginate(10);
+
+        $data = User::where('role_id', 2)->paginate(10);
         return view('student_data',compact('data'));
     }
 
-    public function create(Request $request)  
+    public function create(Request $request)
     {
         $users =new User();
         $users->class_id = $request->class_id;
@@ -50,11 +50,11 @@ class UserController extends Controller
         $users->image_path = $request->image_path;
         $users->save();
         return $users;
-    } 
+    }
 
     public function store(Request $request)
     {
-        
+
     }
 
     public function show(string $id)
@@ -82,6 +82,6 @@ class UserController extends Controller
     public function destroy($id)
     {
      $users = User::find($id);
-     $users->delete();   
+     $users->delete();
     }
 }

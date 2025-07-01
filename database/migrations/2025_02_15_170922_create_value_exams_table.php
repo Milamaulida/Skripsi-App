@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('value_exams', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('exam_id');
+            $table->decimal('score', 8, 2);
+            $table->date('exam_date');
             $table->timestamps();
         });
     }

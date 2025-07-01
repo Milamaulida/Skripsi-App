@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('subject', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('teacher_id');
+            $table->string('description')->nullable();
             $table->integer('class_id');
+            $table->string('video_material');
             $table->timestamps();
         });
     }

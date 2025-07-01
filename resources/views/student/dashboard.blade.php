@@ -7,8 +7,8 @@
         <div class="flex justify-end mb-6">
             <div class="flex items-center space-x-4">
                 <div class="text-right">
-                    <div class="font-semibold text-gray-800 text-md">Mila Maulida</div>
-                    <div class="text-sm text-gray-500">1234567890</div>
+                    <div class="font-semibold text-gray-800 text-md">{{ Auth::user()->name }}</div>
+                    <div class="text-sm text-gray-500">{{ Auth::user()->identification_number }}</div>
                 </div>
                 <div class="relative">
                     <button id="profileButton" class="focus:outline-none">
@@ -23,8 +23,7 @@
         </div>
 
         <!-- Welcome Banner -->
-        <div
-            class="rounded-xl text-white p-6 flex flex-col-reverse md:flex-row items-center justify-between mb-10">
+        <div class="rounded-xl text-white p-6 flex flex-col-reverse md:flex-row items-center justify-between mb-10">
             <svg width="1022" height="314" viewBox="0 0 1022 314" fill="none" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
                 <path
@@ -46,8 +45,8 @@
                     fill="#F5C400" />
                 <ellipse cx="460.048" cy="161.432" rx="6.07883" ry="20.1551" transform="rotate(-90 460.048 161.432)"
                     fill="#F5C400" />
-                <ellipse cx="6.07883" cy="20.1551" rx="6.07883" ry="20.1551" transform="matrix(-1 0 0 1 492.925 114.477)"
-                    fill="#F5C400" />
+                <ellipse cx="6.07883" cy="20.1551" rx="6.07883" ry="20.1551"
+                    transform="matrix(-1 0 0 1 492.925 114.477)" fill="#F5C400" />
                 <rect x="805.731" y="48.3162" width="199.058" height="199.058" fill="url(#pattern1_753_456)" />
                 <path
                     d="M1022 181C1022 214.689 1022 242 1022 242C988.311 242 961 214.689 961 181C961 147.311 988.311 120 1022 120C1022 120 1022 147.311 1022 181Z"
@@ -95,7 +94,7 @@
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Kegiatan Ekstrakurikuler</h2>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    @for($i = 1; $i <= 10; $i++)
+                    @for ($i = 1; $i <= 10; $i++)
                         <div class="swiper-slide">
                             <img src="{{ asset('images/foto' . $i . '.jpg') }}" alt="Ekskul {{ $i }}"
                                 class="rounded-lg shadow-md w-full h-52 object-cover">
@@ -110,7 +109,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 new Swiper('.mySwiper', {
                     slidesPerView: 1,
                     spaceBetween: 20,
@@ -119,22 +118,26 @@
                         clickable: true,
                     },
                     breakpoints: {
-                        640: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 }
+                        640: {
+                            slidesPerView: 2
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        }
                     }
                 });
             });
         </script>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const profileButton = document.getElementById('profileButton');
                 const profileMenu = document.getElementById('profileMenu');
 
-                profileButton.addEventListener('click', function () {
+                profileButton.addEventListener('click', function() {
                     profileMenu.classList.toggle('hidden');
                 });
 
-                document.addEventListener('click', function (e) {
+                document.addEventListener('click', function(e) {
                     if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
                         profileMenu.classList.add('hidden');
                     }

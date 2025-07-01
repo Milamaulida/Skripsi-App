@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('answer', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_question');
-            $table->string('answer_text');
+            $table->integer('question_id');
+            $table->text('answer_text');
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }

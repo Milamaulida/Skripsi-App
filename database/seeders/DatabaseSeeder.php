@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
-    {
-        $user = User::where('email', 'maulidamila07@gmail.com')->first();
-        if ($user) {
-            $user->password = Hash::make('12345678');
-            $user->save();
-        }
-    }
+    public function run(): void
+{
+    $this->call([
+        UserSeeder::class,
+    ]);
+
+     $this->call([
+        RoleSeeder::class,
+    ]);
+}
 }
