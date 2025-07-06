@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\NrClass;
@@ -7,11 +6,6 @@ use Illuminate\Http\Request;
 
 class NrClassController extends Controller
 {
-    public function index()
-    {
-        $data = NrClass::paginate(10);
-    }
-
     public function classStudent()
     {
         $data = NrClass::paginate(10);
@@ -21,65 +15,63 @@ class NrClassController extends Controller
     public function classTeacher()
     {
         $data = NrClass::paginate(10);
-        return view('class_teacher', compact('data'));
+        return view('teacher.Class.index', compact('data'));
     }
 
     public function classData()
     {
         $data = NrClass::paginate(10);
-        return view('class_data', compact('data'));
+        return view('admin.Class.index', compact('data'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        return view('add_class');
+        return view('admin.Class.create');
     }
 
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $class = new NrClass();
-        $class->name = $name;
-        $class->save();
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        NrClass::create([
+            'name' => $request->name,
+        ]);
 
         return redirect()->route('class.data')->with('success', 'Kelas berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $data = NrClass::with('subjecttopic')->findOrFail($id);
         return view('materi_by_class', compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $class = NrClass::findOrFail($id);
+        return view('admin.Class.edit', compact('class'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        $classes = NrClass::find($id);
-        if (isset($request->name))
-            $classes->name = $request->name;
-        $classes->save();
-        return $classes;
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $class       = NrClass::findOrFail($id);
+        $class->name = $request->name;
+        $class->save();
+
+        return redirect()->route('class.data')->with('success', 'Kelas berhasil diperbarui!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $classes = NrClass::find($id);
-        $classes->delete();
+        $class = NrClass::findOrFail($id);
+        $class->delete();
+
+        return redirect()->route('class.data')->with('success', 'Kelas berhasil dihapus.');
     }
 }

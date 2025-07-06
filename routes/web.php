@@ -147,24 +147,28 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    // User Management
     Route::get('/teacher-data', [UserController::class, 'dataGuru'])->name('data.guru');
-    Route::get('/student-data', [UserController::class, 'dataSiswa']);
+    Route::get('/student-data', [UserController::class, 'dataSiswa'])->name('data.siswa');
     Route::get('/account-management', [UserController::class, 'managementAkun']);
 
+    // Class Management
+    Route::resource('classes', NrClassController::class)->except(['index']);
     Route::get('/class-data', [NrClassController::class, 'classData'])->name('class.data');
-    Route::post('/nrclass/create', [NrClassController::class, 'create']);
 
-    Route::get('/classes/create', [NrClassController::class, 'create'])->name('classes.create');
-    Route::post('/classes', [NrClassController::class, 'store'])->name('classes.store');
-
-    Route::get('/learning-materials-data', [SubjectController::class, 'index']);
+    // Subject Management
+    Route::get('/learning-materials-data', [SubjectController::class, 'indexAdmin']);
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/guru/dashboard', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
     Route::get('/class-teacher', [NrClassController::class, 'classTeacher']);
-    Route::get('/teacher-evaluation', [ExamController::class, 'index']);
-    Route::get('/add-evaluation-question', [QuestionController::class, 'index']);
+    Route::get('/teacher-evaluation', [QuestionController::class, 'index']);
+    Route::get('/add-evaluation-question', [QuestionController::class, 'create']);
+
+    Route::resource('questions', QuestionController::class);
+
 
     Route::get('/value-teacher', [ValueExamController::class, 'index']);
 
@@ -190,10 +194,13 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
         return view('update_value');
     })->name('update_value');
 
-    Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials']);
+    Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials'])->name('teacher.materials');
     Route::get('/teacher-materials/{class_id}', [SubjectController::class, 'showMaterialsByClass'])->name('teacher-materials');
     Route::get('/add_teacher_materials', [SubjectController::class, 'create'])->name('subject.create');
-    Route::post('/subject', [SubjectController::class, 'store'])->name('subject.store');
+    Route::post('/teacher-materials', [SubjectController::class, 'store'])->name('subject.store');
+    Route::resource('subject', SubjectController::class);
+
+
 
     Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas'])->name('subject.show.kelas7');
     Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');

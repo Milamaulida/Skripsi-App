@@ -18,20 +18,20 @@ class UserController extends Controller
     public function managementAkun()
     {
         $data = User::paginate(10);
-        return view('account_management',compact('data'));
+        return view('admin.UserManagement.index',compact('data'));
     }
     //Data Guru
     public function dataGuru()
     {
         $data = User::where('role_id', 3)->paginate(10);
-        return view('teacher_data', compact('data'));
+        return view('admin.Guru.index', compact('data'));
     }
     //Data Siswa
     public function dataSiswa()
     {
 
         $data = User::where('role_id', 2)->paginate(10);
-        return view('student_data',compact('data'));
+        return view('admin.Siswa.index',compact('data'));
     }
 
     public function create(Request $request)

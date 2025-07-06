@@ -9,18 +9,16 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $table = 'question'; 
-    
-    protected $fillable = ['exam_id','class_id','question'];
-    
-    protected $dates =['created_at','updated_at'];
-    public function answers()
-    {
-        return $this->hasMany(Answer::class);
-    }
+    protected $table = 'questions';
 
-   public function correctAnswer()
-    {
-        return $this->hasOne(Answer::class)->where('is_correct', 1);
-    }
+    protected $fillable = [
+        'exam_id',
+        'class_id',
+        'question',
+        'option_a',
+        'option_b',
+        'option_c',
+        'option_d',
+        'correct_answer',
+    ];
 }

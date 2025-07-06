@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-center">Data Guru</h1>
     <br>
-   
+
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-primary">
             <tr>
@@ -24,9 +24,9 @@
                 <td>{{ $no++ }}</td>
                 <td>
                     @if($guru->image_path)
-                        <img src="{{ asset('storage/' . $guru->image_path) }}" alt="" width="60">
+                    <img src="{{ asset('storage/' . $guru->image_path) }}" alt="" width="60">
                     @else
-                        <span>Tidak ada foto</span>
+                    <span>Tidak ada foto</span>
                     @endif
                 </td>
                 <td>{{ $guru->name }}</td>

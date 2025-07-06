@@ -9,37 +9,42 @@ use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
-    public function index()
+    public function indexAdmin()
     {
     $data = Subject::all();
-    return view('learning_materials_data', compact('data'));
+    return view('admin.Materi.index', compact('data'));
     }
 
     public function teacherMaterials()
     {
         $data = Subject::all();
-        return view ('teacher_materials', compact('data'));
+        return view ('teacher.Materi.index', compact('data'));
     }
 
-    public function create(Request $request)
-    {
-        
-    }
+    public function create()
+{
+    $classes = NrClass::all();
+    return view('teacher.Materi.create', compact('classes'));
+}
 
     public function store(Request $request)
-    {
-         $validated = $request->validate([
-        'content' => 'required|string',
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'class_id' => 'required|integer',
+        'video_material' => 'nullable|string|max:255',
     ]);
 
-    // Simpan ke database
-    Post::create([
-        'content' => $validated['content'],
+    Subject::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'class_id' => $request->class_id,
+        'video_material' => $request->video_material,
     ]);
 
-    return redirect()->route('post.index')->with('success', 'Post berhasil disimpan.');
-
-    }
+    return redirect('/teacher-materials')->with('success', 'Materi berhasil ditambahkan!');
+}
 
     public function show($class_id)
     {
@@ -70,32 +75,45 @@ class SubjectController extends Controller
        public function showMaterialsByClass($class_id)
     {
         $data = Subject::where('class_id', $class_id)->get();
-        return view('teacher_materials', compact('data'));
+        return view('teacher.Materi.index', compact('data'));
     }
 
-    public function edit(string $id)
-    {
-        
-    }
+    public function edit($id)
+{
+    $subject = Subject::findOrFail($id);
+    $classes = NrClass::all();
 
+    return view('teacher.Materi.edit', compact('subject', 'classes'));
+}
 
-    public function update(Request $request, $id)
-    {
-        $subjects = Subject::find($id);
-        if (isset($request->title)) $subjects->title = $request->title;
-        if (isset($request->description)) $subjects->description = $request->description;
-        if (isset($request->teacher_id)) $subjects->teacher_id = $request->teacher_id;
-        if (isset($request->class_id)) $subjects->class_id = $request->class_id;
-        $subjects->save();
-        return $subjects;
-    }
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'class_id' => 'required|integer',
+        'video_material' => 'nullable|string|max:255',
+    ]);
+
+    $subject = Subject::findOrFail($id);
+    $subject->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'class_id' => $request->class_id,
+        'video_material' => $request->video_material,
+    ]);
+
+    return redirect('/teacher-materials')->with('success', 'Materi berhasil diupdate!');
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $subjects = Subject::find($id);
-        $subjects->delete();
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return redirect('/teacher-materials')->with('success', 'Materi berhasil dihapus!');
     }
 }
