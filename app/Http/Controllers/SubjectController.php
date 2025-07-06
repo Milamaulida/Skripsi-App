@@ -78,6 +78,27 @@ class SubjectController extends Controller
         return view('teacher.Materi.index', compact('data'));
     }
 
+    public function listMaterialsStudent($class_id)
+    {
+        $kelas = NrClass::findOrFail($class_id);
+        $materi = Subject::where('class_id', $class_id)->get();
+
+        return view('student.Materi.index', compact('materi', 'kelas'));
+    }
+
+    public function showDetailMaterial($id)
+{
+    $materi = Subject::with('nrclass')->findOrFail($id);
+
+    $userClassId = auth()->user()->class_id;
+
+    if ($materi->class_id !== $userClassId) {
+        abort(403, 'Anda tidak memiliki akses ke materi ini.');
+    }
+
+    return view('student.Materi.detail', compact('materi'));
+}
+
     public function edit($id)
 {
     $subject = Subject::findOrFail($id);

@@ -15,7 +15,7 @@ class SubjectTopicController extends Controller
         $data = SubjectTopic::with('class')->get();
         return view('subject_by_class', compact('data'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      */

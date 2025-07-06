@@ -3,13 +3,19 @@ namespace App\Http\Controllers;
 
 use App\Models\NrClass;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NrClassController extends Controller
 {
     public function classStudent()
     {
-        $data = NrClass::paginate(10);
-        return view('class_student', compact('data'));
+        $user = Auth::user();
+
+        $kelas = $user->nrclass;
+
+        return view('student.Class.index', [
+            'kelas' => $kelas
+        ]);
     }
 
     public function classTeacher()

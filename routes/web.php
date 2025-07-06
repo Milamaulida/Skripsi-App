@@ -143,7 +143,20 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
         return view('dashboard_student');
     })->name('dashboard-student');
     Route::get('/class-student', [NrClassController::class, 'classStudent']);
+
+    Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
+
+Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
+
 });
+
+Route::get('/class-student/{class_id}/materials', [SubjectController::class, 'listMaterialsStudent'])
+    ->name('student.materials');
+
+    Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
+    ->name('student.materials.detail');
+
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -178,9 +191,9 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
 
     Route::get('/class/{id}', [ClassController::class, 'show'])->name('classes.show');
 
-    Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
+    // Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
 
-    Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
+    // Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
 
     Route::get('/value_student', function () {
         return view('value_student');

@@ -23,11 +23,12 @@ class QuestionController extends Controller
     return view('teacher.Question.index', compact('classes', 'data', 'selectedClassId'));
 }
 
-     public function create()
+    public function create(Request $request)
     {
         $classes = NrClass::all();
+        $classId = $request->get('class_id');
 
-        return view('teacher.Question.create', compact( 'classes'));
+        return view('teacher.Question.create', compact( 'classes' , 'classId'));
     }
 
     public function store(Request $request)
