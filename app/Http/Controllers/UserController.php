@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\NrClass;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -13,12 +14,12 @@ class UserController extends Controller
     {
         dd($request->all());
         $data = User::paginate(10);
-        return view ('managemen_akun',compact('data'));
+        return view('managemen_akun', compact('data'));
     }
     public function managementAkun()
     {
         $data = User::paginate(10);
-        return view('admin.UserManagement.index',compact('data'));
+        return view('admin.UserManagement.index', compact('data'));
     }
     //Data Guru
     public function dataGuru()
@@ -31,30 +32,65 @@ class UserController extends Controller
     {
 
         $data = User::where('role_id', 2)->paginate(10);
-        return view('admin.Siswa.index',compact('data'));
+        return view('admin.Siswa.index', compact('data'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $users =new User();
-        $users->class_id = $request->class_id;
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->password = $request->password;
-        $users->phone = $request->phone;
-        $users->identification_number = $request->identification_number;
-        $users->role_id = $request->role_id;
-        $users->status = $request->status;
-        $users->birth_date = $request->birth_date;
-        $users->address = $request->address;
-        $users->image_path = $request->image_path;
-        $users->save();
-        return $users;
+        $classes = NrClass::all();
+        return view('admin.UserManagement.create', compact('classes'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'       => 'required|string|max:255',
+            'email'      => 'required|email|unique:users,email',
+            'role_id'    => 'required|in:2,3',
+            'class_id'   => 'nullable|exists:nr_class,id',
+            'password'   => 'required|min:6|confirmed',
+            'phone'      => 'nullable|numeric',
+            'status'     => 'nullable|string',
+            'birth_date' => 'nullable|date',
+            'address'    => 'nullable|string',
+            'image_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
+        $imagePath = null;
+        if ($request->hasFile('image_path')) {
+            $imagePath = $request->file('image_path')->store('user_images', 'public');
+        }
+
+        User::create([
+            'name'                  => $request->name,
+            'email'                 => $request->email,
+            'role_id'               => $request->role_id,
+            'class_id'              => $request->class_id,
+            'password'              => Hash::make($request->password),
+            'identification_number' => $this->generateUniqueID(),
+            'phone'                 => $request->phone,
+            'status'                => $request->status,
+            'birth_date'            => $request->birth_date,
+            'address'               => $request->address,
+            'image_path'            => $imagePath,
+        ]);
+
+        return redirect()->route('account.management')->with('success', 'User berhasil ditambahkan.');
+    }
+
+    private function generateUniqueID()
+    {
+        do {
+            $id = mt_rand(100000, 999999);
+        } while (User::where('identification_number', $id)->exists());
+
+        return $id;
+    }
+
+    public function edit(User $user)
+    {
+        $classes = NrClass::all();
+        return view('admin.UserManagement.edit', compact('user', 'classes'));
     }
 
     public function show(string $id)
@@ -63,25 +99,48 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-       $users = User::find($id);
-       isset($request->class_id) && $users->class_id = $request->class_id;
-       isset($request->name) && $users->name = $request->name;
-       isset($request->email) && $users->email = $request->email;
-       isset($request->password) && $users->password = $request->password;
-       isset($request->phone) && $users->phone = $request->phone;
-       isset($request->identification_number) && $users->identification_number = $request->identification_number;
-       isset($request->role_id) && $users->role_id = $request->role_id;
-       isset($request->status) && $users->status = $request->status;
-       isset($request->birth_date) && $users->birth_date = $request->birth_date;
-       isset($request->address) && $users->address = $request->address;
-       isset($request->image_path) && $users->image_path = $request->image_path;
-       $users->save();
-       return $users;
+{
+    $user = User::findOrFail($id);
+
+    $validated = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'phone' => 'nullable',
+        'status' => 'required',
+        'birth_date' => 'nullable|date',
+        'address' => 'nullable|string',
+        'image_path' => 'nullable|image|max:2048',
+        'role_id' => 'required',
+        'class_id' => 'nullable|exists:nr_class,id',
+        'password' => 'nullable|confirmed|min:6',
+    ]);
+
+    if ($request->hasFile('image_path')) {
+        if ($user->image_path) {
+            Storage::delete('public/' . $user->image_path);
+        }
+        $validated['image_path'] = $request->file('image_path')->store('uploads/users', 'public');
     }
-    public function destroy($id)
+
+    if ($request->filled('password')) {
+        $validated['password'] = Hash::make($request->password);
+    } else {
+        unset($validated['password']);
+    }
+
+    $user->update($validated);
+
+    return redirect()->route('data.siswa')->with('success', 'User berhasil diperbarui.');
+}
+
+    public function destroy(User $user)
     {
-     $users = User::find($id);
-     $users->delete();
+        if ($user->image_path && Storage::disk('public')->exists($user->image_path)) {
+            Storage::disk('public')->delete($user->image_path);
+        }
+
+        $user->delete();
+
+        return redirect()->route('account.management')->with('success', 'User berhasil dihapus.');
     }
 }

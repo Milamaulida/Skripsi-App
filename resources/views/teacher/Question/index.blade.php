@@ -53,7 +53,8 @@
                 <td>
                     <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-warning btn-sm">✎</a>
                     <form action="{{ route('questions.destroy', $question->id) }}" method="POST" class="d-inline">
-                        @csrf @method('DELETE')
+                        @csrf
+                        @method('DELETE')
                         <button class="btn btn-danger btn-sm"
                             onclick="return confirm('Yakin ingin menghapus soal ini?')">🗑</button>
                     </form>

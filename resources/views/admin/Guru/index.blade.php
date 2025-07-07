@@ -34,8 +34,16 @@
                 <td>{{ \Carbon\Carbon::parse($guru->birth_date)->format('d-m-Y') }}</td>
                 <td>{{ $guru->address }}</td>
                 <td class="text-center">
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="{{ route('users.edit', $guru->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                        <form action="{{ route('users.destroy', $guru->id) }}" method="POST"
+                            onsubmit="return confirm('Yakin ingin menghapus akun ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

@@ -41,8 +41,14 @@
                 <td>{{ $value->description}}</td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center gap-2">
-                        <a href="/edit materi" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                        <a href="{{ route('subject.edit', $value->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                        <form action="{{ route('subject.destroy', $value->id) }}" method="POST" class="d-inline"
+                            onsubmit="return confirm('Yakin ingin menghapus?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
                     </div>
                 </td>
             </tr>

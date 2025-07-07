@@ -1,31 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\Guru\GuruDashboardController;
+use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\NrClassController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Siswa\SiswaDashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectTopicController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\ValueExamController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\NrClassController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\ProfileController;
-use App\Models\Subject;
-use App\Models\Role;
-use App\Models\Exam;
-use App\Models\ValueExam;
-use App\Models\Question;
-use App\Models\Answer;
-use App\Models\User;
 use App\Http\Controllers\UploadController;
-use App\Http\Controllers\NilaiController;
-use App\Http\Controllers\ClassController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Guru\GuruDashboardController;
-use App\Http\Controllers\Siswa\SiswaDashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ValueExamController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -146,17 +139,15 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 
     Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
 
-Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
+    Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
 
 });
 
 Route::get('/class-student/{class_id}/materials', [SubjectController::class, 'listMaterialsStudent'])
     ->name('student.materials');
 
-    Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
+Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
     ->name('student.materials.detail');
-
-
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -164,7 +155,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // User Management
     Route::get('/teacher-data', [UserController::class, 'dataGuru'])->name('data.guru');
     Route::get('/student-data', [UserController::class, 'dataSiswa'])->name('data.siswa');
-    Route::get('/account-management', [UserController::class, 'managementAkun']);
+    Route::get('/account-management', [UserController::class, 'managementAkun'])->name('account.management');
+    Route::get('/add-user', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::resource('users', UserController::class);
 
     // Class Management
     Route::resource('classes', NrClassController::class)->except(['index']);
@@ -172,6 +169,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Subject Management
     Route::get('/learning-materials-data', [SubjectController::class, 'indexAdmin']);
+    Route::resource('subject', SubjectController::class);
+
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
@@ -182,14 +181,13 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
 
     Route::resource('questions', QuestionController::class);
 
-
     Route::get('/value-teacher', [ValueExamController::class, 'index']);
 
     Route::get('/input-score-grade7', [ValueExamController::class, 'inputScoreGrade7']);
     Route::get('/input-score-grade8', [ValueExamController::class, 'inputScoreGrade8']);
     Route::get('/input-score-grade9', [ValueExamController::class, 'inputScoreGrade9']);
 
-    Route::get('/class/{id}', [ClassController::class, 'show'])->name('classes.show');
+    // Route::get('/class/{id}', [ClassController::class, 'show'])->name('classes.show');
 
     // Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
 
@@ -212,8 +210,6 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/add_teacher_materials', [SubjectController::class, 'create'])->name('subject.create');
     Route::post('/teacher-materials', [SubjectController::class, 'store'])->name('subject.store');
     Route::resource('subject', SubjectController::class);
-
-
 
     Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas'])->name('subject.show.kelas7');
     Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');
