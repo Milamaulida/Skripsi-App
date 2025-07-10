@@ -130,7 +130,7 @@ class UserController extends Controller
 
     $user->update($validated);
 
-    return redirect()->route('data.siswa')->with('success', 'User berhasil diperbarui.');
+    return redirect()->route('account.management')->with('success', 'User berhasil diperbarui.');
 }
 
     public function destroy(User $user)

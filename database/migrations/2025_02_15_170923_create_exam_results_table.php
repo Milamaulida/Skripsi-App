@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('value_exam', function (Blueprint $table) {
+        Schema::create('exam_results', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('exam_id');
-            $table->decimal('score');
-            $table->date('exam_date');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('exam_id')->constrained()->onDelete('cascade');
+            $table->decimal('score')->nullable();
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('value_exam');
+        Schema::dropIfExists('exam_results');
     }
 };

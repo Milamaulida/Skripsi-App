@@ -13,7 +13,6 @@ class Question extends Model
 
     protected $fillable = [
         'exam_id',
-        'class_id',
         'question',
         'option_a',
         'option_b',

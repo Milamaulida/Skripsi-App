@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\Guru\GuruDashboardController;
 use App\Http\Controllers\NilaiController;
@@ -169,7 +168,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Subject Management
     Route::get('/learning-materials-data', [SubjectController::class, 'indexAdmin']);
-    Route::resource('subject', SubjectController::class);
+    Route::get('/learning-materials/{id}/edit-admin', [SubjectController::class, 'editAdmin'])->name('learning-materials.edit.admin');
+    Route::put('/learning-materials/{id}/update-admin', [SubjectController::class, 'updateAdmin'])->name('learning-materials.update.admin');
+    Route::delete('/learning-materials/{id}', [SubjectController::class, 'destroyAdmin'])->name('learning-materials.destroy');
+    // Route::resource('subject', SubjectController::class);
 
 });
 
@@ -179,7 +181,24 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/teacher-evaluation', [QuestionController::class, 'index']);
     Route::get('/add-evaluation-question', [QuestionController::class, 'create']);
 
-    Route::resource('questions', QuestionController::class);
+    //Exam Management
+    Route::resource('/exams', ExamController::class);
+    Route::get('/exam-class', [ExamController::class, 'selectClass'])->name('exam.select-class');
+    Route::get('/exams/class/{class_id}', [ExamController::class, 'listByClass'])->name('exam.by-class');
+
+    // Question Management
+    Route::get('/exams/{exam_id}/questions', [QuestionController::class, 'index'])->name('questions.index');
+    Route::get('/exams/{exam_id}/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+    Route::post('/exams/{exam_id}/questions', [QuestionController::class, 'store'])->name('questions.store');
+
+    Route::get('/exams/{exam_id}/questions/{question_id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+    Route::put('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'update'])->name('questions.update');
+    Route::delete('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+
+
+
+
+    // Route::resource('questions', QuestionController::class);
 
     Route::get('/value-teacher', [ValueExamController::class, 'index']);
 
@@ -205,7 +224,7 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
         return view('update_value');
     })->name('update_value');
 
-    Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials'])->name('teacher.materials');
+    // Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials'])->name('teacher.materials');
     Route::get('/teacher-materials/{class_id}', [SubjectController::class, 'showMaterialsByClass'])->name('teacher-materials');
     Route::get('/add_teacher_materials', [SubjectController::class, 'create'])->name('subject.create');
     Route::post('/teacher-materials', [SubjectController::class, 'store'])->name('subject.store');

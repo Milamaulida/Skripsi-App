@@ -7,8 +7,9 @@
         &larr; Kembali
     </a>
 
-    <h1 class="h3 mb-4 text-center">Input Materi Siswa</h1>
-
+    <h1 class="h3 mb-4 text-center">
+        Input Materi Siswa Kelas {{ $class->name }}
+    </h1>
     <a href="{{ route('subject.create') }}" class="btn btn-success">+ Tambah Materi</a>
 
     <br><br>

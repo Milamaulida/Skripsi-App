@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('nr_class')->onDelete('cascade');
-
+            $table->foreignId('exam_id')->constrained()->onDelete('cascade');
             $table->string('question');
             $table->text('option_a')->nullable();
             $table->text('option_b')->nullable();

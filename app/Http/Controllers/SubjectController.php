@@ -15,11 +15,11 @@ class SubjectController extends Controller
     return view('admin.Materi.index', compact('data'));
     }
 
-    public function teacherMaterials()
-    {
-        $data = Subject::all();
-        return view ('teacher.Materi.index', compact('data'));
-    }
+    // public function teacherMaterials()
+    // {
+    //     $data = Subject::all();
+    //     return view ('teacher.Materi.index', compact('data'));
+    // }
 
     public function create()
 {
@@ -43,7 +43,9 @@ class SubjectController extends Controller
         'video_material' => $request->video_material,
     ]);
 
-    return redirect('/teacher-materials')->with('success', 'Materi berhasil ditambahkan!');
+    return redirect()->route('teacher-materials', ['class_id' => $request->class_id])
+    ->with('success', 'Materi berhasil ditambahkan!');
+
 }
 
     public function show($class_id)
@@ -72,10 +74,12 @@ class SubjectController extends Controller
         ]);
     }
 
-       public function showMaterialsByClass($class_id)
+    public function showMaterialsByClass($class_id)
     {
-        $data = Subject::where('class_id', $class_id)->get();
-        return view('teacher.Materi.index', compact('data'));
+$data = Subject::with('nrclass')->where('class_id', $class_id)->get();
+        $class = NrClass::findOrFail($class_id);
+
+        return view('teacher.Materi.index', compact('data', 'class'));
     }
 
     public function listMaterialsStudent($class_id)
@@ -107,6 +111,34 @@ class SubjectController extends Controller
     return view('teacher.Materi.edit', compact('subject', 'classes'));
 }
 
+public function editAdmin($id)
+{
+    $subject = Subject::findOrFail($id);
+    $classes = NrClass::all();
+
+    return view('admin.Materi.edit', compact('subject', 'classes'));
+}
+
+public function updateAdmin(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'class_id' => 'required|integer',
+        'video_material' => 'nullable|string|max:255',
+    ]);
+
+    $subject = Subject::findOrFail($id);
+    $subject->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'class_id' => $request->class_id,
+        'video_material' => $request->video_material,
+    ]);
+
+    return redirect('/learning-materials-data')->with('success', 'Materi berhasil diupdate!');
+}
+
 public function update(Request $request, $id)
 {
     $request->validate([
@@ -124,7 +156,8 @@ public function update(Request $request, $id)
         'video_material' => $request->video_material,
     ]);
 
-    return redirect('/teacher-materials')->with('success', 'Materi berhasil diupdate!');
+return redirect()->route('teacher-materials', ['class_id' => $request->class_id])
+    ->with('success', 'Materi berhasil diupdate!');
 }
 
     /**
@@ -136,5 +169,14 @@ public function update(Request $request, $id)
         $subject->delete();
 
         return redirect('/teacher-materials')->with('success', 'Materi berhasil dihapus!');
+    }
+
+
+    public function destroyAdmin($id)
+    {
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return redirect('/learning-materials-data')->with('success', 'Materi berhasil dihapus!');
     }
 }

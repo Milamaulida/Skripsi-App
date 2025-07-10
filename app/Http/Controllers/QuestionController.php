@@ -1,38 +1,30 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\NrClass;
+use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function index(Request $request)
+
+    public function index($exam_id)
     {
-        $selectedClassId = $request->get('class_id');
-        $classes         = NrClass::all();
+        $exam      = Exam::findOrFail($exam_id);
+        $questions = Question::where('exam_id', $exam_id)->get();
 
-        $data = collect();
-
-        if ($selectedClassId) {
-            $data = Question::where('class_id', $selectedClassId)->get();
-        }
-
-        return view('teacher.Question.index', compact('classes', 'data', 'selectedClassId'));
+        return view('teacher.Question.index', compact('exam', 'questions'));
     }
 
-    public function create(Request $request)
+    public function create($exam_id)
     {
-        $classes = NrClass::all();
-        $classId = $request->get('class_id');
-
-        return view('teacher.Question.create', compact('classes', 'classId'));
+        $exam = Exam::findOrFail($exam_id);
+        return view('teacher.Question.create', compact('exam'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $exam_id)
     {
         $request->validate([
-            'class_id'       => 'required|exists:nr_class,id',
             'question'       => 'required|string|max:255',
             'option_a'       => 'required|string',
             'option_b'       => 'required|string',
@@ -42,7 +34,7 @@ class QuestionController extends Controller
         ]);
 
         Question::create([
-            'class_id'       => $request->class_id,
+            'exam_id'        => $exam_id,
             'question'       => $request->question,
             'option_a'       => $request->option_a,
             'option_b'       => $request->option_b,
@@ -51,7 +43,8 @@ class QuestionController extends Controller
             'correct_answer' => $request->correct_answer,
         ]);
 
-        return redirect()->route('questions.index')->with('success', 'Soal berhasil ditambahkan!');
+        return redirect()->route('questions.index', ['exam_id' => $exam_id])
+            ->with('success', 'Soal berhasil ditambahkan!');
     }
 
     /**
@@ -65,22 +58,21 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($exam_id, $question_id)
     {
-        $question = Question::findOrFail($id);
-        $classes  = NrClass::all();
+        $exam     = Exam::findOrFail($exam_id);
+        $question = Question::findOrFail($question_id);
 
-        return view('teacher.Question.edit', compact('question', 'classes'));
+        return view('teacher.question.edit', compact('exam', 'question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $exam_id, $question_id)
     {
         $request->validate([
-            'class_id'       => 'required|exists:nr_class,id',
-            'question'       => 'required|string',
+            'question'       => 'required|string|max:255',
             'option_a'       => 'required|string',
             'option_b'       => 'required|string',
             'option_c'       => 'required|string',
@@ -88,26 +80,36 @@ class QuestionController extends Controller
             'correct_answer' => 'required|in:A,B,C,D',
         ]);
 
-        $question = Question::findOrFail($id);
-        $question->update($request->only([
-            'class_id', 'question', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer',
-        ]));
+        $question = Question::findOrFail($question_id);
 
-        return redirect()->route('questions.index', ['class_id' => $question->class_id])
-            ->with('success', 'Soal berhasil diperbarui.');
+        $question->update([
+            'question'       => $request->question,
+            'option_a'       => $request->option_a,
+            'option_b'       => $request->option_b,
+            'option_c'       => $request->option_c,
+            'option_d'       => $request->option_d,
+            'correct_answer' => $request->correct_answer,
+        ]);
+
+        return redirect()->route('questions.index', $question->exam_id)
+            ->with('success', 'Soal berhasil diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($exam_id, $question_id)
     {
-        $question = Question::findOrFail($id);
-        $classId  = $question->class_id;
+        $question = Question::findOrFail($question_id);
+
+        if ($question->exam_id != $exam_id) {
+            abort(403, 'Soal tidak sesuai dengan ujian.');
+        }
 
         $question->delete();
 
-        return redirect()->route('questions.index', ['class_id' => $classId])
-            ->with('success', 'Soal berhasil dihapus.');
+        return redirect()->route('questions.index', $exam_id)
+            ->with('success', 'Soal berhasil dihapus!');
     }
+
 }

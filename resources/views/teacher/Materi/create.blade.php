@@ -41,7 +41,7 @@
 
         <div class="mt-4">
             <button type="submit" class="btn btn-primary">Simpan Materi</button>
-            <a href="{{ route('teacher.materials') }}" class="btn btn-secondary">Batal</a>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
         </div>
     </form>
 </div>

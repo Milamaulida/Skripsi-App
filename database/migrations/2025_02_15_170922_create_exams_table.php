@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('value_exams', function (Blueprint $table) {
+        Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('exam_id');
-            $table->decimal('score', 8, 2);
-            $table->date('exam_date');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->foreignId('class_id')->constrained('nr_class');
+            $table->integer('order')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('value_exams');
+        Schema::dropIfExists('exams');
     }
 };

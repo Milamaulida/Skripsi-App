@@ -2,28 +2,13 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="text-center fw-bold mb-4 pb-2">Halaman Evaluasi</h1>
+    <h1 class="text-center fw-bold mb-4 pb-2">Halaman Soal {{$exam->title}}</h1>
 
-    {{-- Filter Kelas --}}
-    <form method="GET" action="{{ route('questions.index') }}">
-        <div class="mb-3">
-            <label for="kelasFilter" class="form-label">Pilih Kelas:</label>
-            <select name="class_id" id="kelasFilter" class="form-select" style="width: 200px;"
-                onchange="this.form.submit()">
-                <option value="">-- Pilih Kelas --</option>
-                @foreach ($classes as $class)
-                <option value="{{ $class->id }}" {{ $selectedClassId==$class->id ? 'selected' : '' }}>
-                    {{ $class->name }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-    </form>
 
-    @if ($selectedClassId)
+    @if (isset($exam))
     {{-- Tombol Aksi --}}
     <div class="mb-3 d-flex gap-2">
-        <a href="{{ route('questions.create', ['class_id' => $selectedClassId]) }}" class="btn btn-success">
+        <a href="{{ route('questions.create', ['exam_id' => $exam->id]) }}" class="btn btn-success">
             + Tambah Soal
         </a>
     </div>
@@ -39,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($data as $index => $question)
+            @forelse ($questions as $index => $question)
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $question->question }}</td>
@@ -51,8 +36,11 @@
                     <strong class="text-success">Jawaban Benar: {{ $question->correct_answer }}</strong>
                 </td>
                 <td>
-                    <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-warning btn-sm">✎</a>
-                    <form action="{{ route('questions.destroy', $question->id) }}" method="POST" class="d-inline">
+                    <a href="{{ route('questions.edit', [$exam->id, $question->id]) }}"
+                        class="btn btn-warning btn-sm">✎</a>
+
+                    <form action="{{ route('questions.destroy', [$exam->id, $question->id]) }}" method="POST"
+                        class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm"
