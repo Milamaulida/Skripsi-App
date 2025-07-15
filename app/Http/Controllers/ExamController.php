@@ -33,22 +33,25 @@ class ExamController extends Controller
     }
 
     public function studentEvaluation()
-    {
-        $student = Auth::user();
+{
+    $student = Auth::user();
 
-        $data = Exam::with('nrclass')
-            ->where('class_id', $student->class_id)
-            ->orderBy('order')
-            ->get()
-            ->map(function ($exam) use ($student) {
-                $exam->is_done = ExamResult::where('exam_id', $exam->id)
-                    ->where('user_id', $student->id)
-                    ->exists();
-                return $exam;
-            });
+    $data = Exam::with(['nrclass', 'questions'])
+        ->where('class_id', $student->class_id)
+        ->orderBy('order')
+        ->get()
+        ->filter(function ($exam) {
+            return $exam->questions->count() > 0;
+        })
+        ->map(function ($exam) use ($student) {
+            $exam->is_done = ExamResult::where('exam_id', $exam->id)
+                ->where('user_id', $student->id)
+                ->exists();
+            return $exam;
+        });
 
-        return view('student.exam.evaluasi_student', compact('data'));
-    }
+    return view('student.exam.evaluasi_student', compact('data'));
+}
 
     public function create(Request $request)
     {

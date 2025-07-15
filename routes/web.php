@@ -1,21 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\Guru\GuruDashboardController;
-use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\NrClassController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Siswa\SiswaDashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectTopicController;
-use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ValueExamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,100 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/subject', [SubjectController::class, 'index']);
-Route::post('/subject/create', [SubjectController::class, 'create']);
-Route::put('/subject/update{id}', [SubjectController::class, 'update']);
-Route::get('/subject/{id}', [SubjectController::class, 'show']);
-Route::delete('/subject/delete/{id}', [SubjectController::class, 'destroy']);
-
-Route::get('/role', [RoleController::class, 'index']);
-Route::post('/role/create', [RoleController::class, 'create']);
-Route::put('/role/update{id}', [RoleController::class, 'update']);
-Route::get('/role/{id}', [RoleController::class, 'show']);
-Route::delete('/role/delete/{id}', [RoleController::class, 'destroy']);
-
-Route::get('/exam', [ExamController::class, 'index']);
-Route::post('/exam/create', [ExamController::class, 'create']);
-Route::put('/exam/update{id}', [ExamController::class, 'update']);
-Route::get('/exam/{id}', [ExamController::class, 'show']);
-Route::delete('/exam/delete/{id}', [ExamController::class, 'destroy']);
-
-Route::get('ValueExam', [ValueExamController::class, 'index']);
-Route::post('/ValueExam/create', [ValueExamController::class, 'create']);
-Route::put('/ValueExam/update{id}', [ValueExamController::class, 'update']);
-Route::get('/ValueExam/{id}', [ValueExamController::class, 'show']);
-Route::delete('/ValueExam/delete/{id}', [ValueExamController::class, 'destroy']);
-
-Route::get('/question', [QuestionController::class, 'index']);
-Route::post('/question/create', [QuestionController::class, 'create']);
-Route::put('/question/update{id}', [QuestionController::class, 'update']);
-Route::get('/question/{id}', [QuestionController::class, 'show']);
-Route::delete('/question/delete/{id}', [QuestionController::class, 'destroy']);
-
-Route::get('/answer', [AnswerController::class, 'index']);
-Route::post('/answer/create', [AnswerController::class, 'create']);
-Route::put('/answer/update{id}', [AnswerController::class, 'update']);
-Route::get('/answer/{id}', [AnswerController::class, 'show']);
-Route::delete('/answer/delete/{id}', [AnswerController::class, 'destroy']);
-
-Route::get('/class', [NrClassController::class, 'index']);
-Route::post('/class/create', [NrClassController::class, 'create']);
-Route::put('/class/update{id}', [NrClassController::class, 'update']);
-Route::get('/class/{id}', [NrClassController::class, 'show']);
-Route::delete('/class/delete/{id}', [NrClassController::class, 'destroy']);
-
-Route::get('/user', [UserController::class, 'index']);
-Route::post('/user/create', [UserController::class, 'create']);
-Route::put('/user/update{id}', [UserController::class, 'update']);
-Route::get('/user/{id}', [UserController::class, 'show']);
-Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-
-
-Route::get('/value_student', function () {
-    return view('value_student');
-})->name('value_student');
-
-Route::get('/exam/{exam}/question/{number?}', [ExamController::class, 'showQuestion'])->name('exam.question');
-
-Route::get('/tentang kami', function () {
-    return view('tentang kami');
-})->name('tentang kami');
-
-Route::post('/ckeditor/upload', [UploadController::class, 'upload'])->name('ckeditor.upload');
-
-Route::get('/input nilai kelas 9 guru', function () {
-    return view('input nilai kelas 9 guru');
-})->name('input nilai kelas 9 guru');
-
-Route::get('/subject/create', [SubjectController::class, 'create'])->name('subject.create');
-Route::post('/subject/store', [SubjectController::class, 'store'])->name('subject.store');
-
-Route::get('/tentang kami guru', function () {
-    return view('tentang kami guru');
-})->name('tentang kami guru');
-
-Route::get('/edit nilai', function () {
-    return view('edit nilai');
-})->name('edit nilai');
-
-Route::get('/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
-Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
-
-Route::get('/about-us-student', function () {
-    return view('about_us_student');
-})->name('about-us-student');
-
-Route::get('/about-us-teacher', function () {
-    return view('about_us_teacher');
-})->name('about-us-teacher');
-
 Route::middleware(['auth', 'role:siswa'])->group(function () {
-    Route::get('/dashboard-student', function () {
-        return view('dashboard_student');
-    })->name('dashboard-student');
+    Route::get('/siswa/dashboard', [SiswaDashboardController::class, 'index'])->name('siswa.dashboard');
+
     Route::get('/class-student', [NrClassController::class, 'classStudent']);
 
     Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
@@ -144,18 +47,16 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::post('/exam/{exam_id}/start/{number}', [ExamController::class, 'answer'])->name('exam.answer');
     Route::get('/exam/{exam_id}/complete', [ExamController::class, 'complete'])->name('exam.complete');
     Route::get('/class-student/{class_id}/materials', [SubjectController::class, 'listMaterialsStudent'])
-    ->name('student.materials');
+        ->name('student.materials');
 
-Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
-    ->name('student.materials.detail');
+    Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
+        ->name('student.materials.detail');
     Route::get('/my-results', [ExamController::class, 'resultStudent'])->name('exam.results');
 
-
+    Route::get('/about-us-student', function () {
+        return view('student.about_us_student');
+    })->name('about-us-student');
 });
-
-
-
-
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -180,7 +81,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/learning-materials/{id}/edit-admin', [SubjectController::class, 'editAdmin'])->name('learning-materials.edit.admin');
     Route::put('/learning-materials/{id}/update-admin', [SubjectController::class, 'updateAdmin'])->name('learning-materials.update.admin');
     Route::delete('/learning-materials/{id}', [SubjectController::class, 'destroyAdmin'])->name('learning-materials.destroy');
-    // Route::resource('subject', SubjectController::class);
 
 });
 
@@ -204,61 +104,21 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::put('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'update'])->name('questions.update');
     Route::delete('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
-    // Menampilkan daftar kelas yang memiliki ujian
-// Guru pilih kelas untuk lihat nilai
-Route::get('/grades/by-class', [ExamController::class, 'selectClassGrade'])->name('teacher.grade.by-class');
+    // Exam Results Management
+    Route::get('/grades/by-class', [ExamController::class, 'selectClassGrade'])->name('teacher.grade.by-class');
+    Route::get('/grades/{class}/exams', [ExamController::class, 'selectExam'])->name('teacher.exam.select');
+    Route::get('/grades/exam/{exam_id}/results', [ExamController::class, 'viewResults'])->name('teacher.exam.results');
 
-// Guru pilih exam di kelas
-Route::get('/grades/{class}/exams', [ExamController::class, 'selectExam'])->name('teacher.exam.select');
-
-// Guru lihat nilai per siswa untuk exam tertentu
-Route::get('/grades/exam/{exam_id}/results', [ExamController::class, 'viewResults'])->name('teacher.exam.results');
-
-
-
-
-
-
-
-    // Route::resource('questions', QuestionController::class);
-
-    Route::get('/value-teacher', [ValueExamController::class, 'index']);
-
-    Route::get('/input-score-grade7', [ValueExamController::class, 'inputScoreGrade7']);
-    Route::get('/input-score-grade8', [ValueExamController::class, 'inputScoreGrade8']);
-    Route::get('/input-score-grade9', [ValueExamController::class, 'inputScoreGrade9']);
-
-    // Route::get('/class/{id}', [ClassController::class, 'show'])->name('classes.show');
-
-    // Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
-
-    // Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
-
-    Route::get('/value_student', function () {
-        return view('value_student');
-    })->name('value_student');
-
-    Route::get('/evaluasi_teacher', function () {
-        return view('evaluasi_teacher');
-    })->name('evaluasi_teacher');
-
-    Route::get('/update-value', function () {
-        return view('update_value');
-    })->name('update_value');
-
-    // Route::get('/teacher-materials', [SubjectController::class, 'teacherMaterials'])->name('teacher.materials');
+    // Learning Materials Management
     Route::get('/teacher-materials/{class_id}', [SubjectController::class, 'showMaterialsByClass'])->name('teacher-materials');
     Route::get('/add_teacher_materials', [SubjectController::class, 'create'])->name('subject.create');
     Route::post('/teacher-materials', [SubjectController::class, 'store'])->name('subject.store');
     Route::resource('subject', SubjectController::class);
 
-    Route::get('/isi-materi-kelas-7/{id}', [SubjectController::class, 'showKelas'])->name('subject.show.kelas7');
-    Route::get('/isi-materi-kelas-8/{id}', [SubjectController::class, 'showKelas8'])->name('subject.show.kelas8');
-    Route::get('/isi-materi-kelas-9/{id}', [SubjectController::class, 'showKelas9'])->name('subject.show.kelas9');
-});
+    Route::get('/about-us-teacher', function () {
+    return view('teacher.about_us_teacher');
+    })->name('teacher.about-us-teacher');
 
-Route::middleware(['auth', 'role:siswa'])->group(function () {
-    Route::get('/siswa/dashboard', [SiswaDashboardController::class, 'index'])->name('siswa.dashboard');
 });
 
 require __DIR__ . '/auth.php';

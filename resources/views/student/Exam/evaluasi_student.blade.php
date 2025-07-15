@@ -33,10 +33,10 @@
 
             <div class="ml-4 flex-1">
                 <div class="text-[#00A5FF] text-[30px] font-medium font-poppins">
-                    Kelas {{ $exam->nrclass->name }}
+                    {{ $exam->nrclass->name }}
                 </div>
                 <div class="text-[#FED600] text-[30px] font-bold font-poppins">
-                    {{ strtoupper($exam->type) }}
+                    {{ strtoupper($exam->title) }}
                 </div>
             </div>
 
