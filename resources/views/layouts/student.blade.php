@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/evaluasi" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="{{route('evaluasi_student')}}" class="flex items-center p-3 rounded hover:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d"
                                 viewBox="0 0 24 24">
                                 <path
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/value_student" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="{{route('exam.results')}}" class="flex items-center p-3 rounded hover:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d"
                                 viewBox="0 0 24 24">
                                 <path

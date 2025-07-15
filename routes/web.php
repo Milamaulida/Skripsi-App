@@ -90,7 +90,6 @@ Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/evaluasi', [ExamController::class, 'studentEvaluation'])->name('evaluasi_student');
 
 Route::get('/value_student', function () {
     return view('value_student');
@@ -139,14 +138,24 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/learning-materials-data/{class_id}', [SubjectTopicController::class, 'showByClass'])->name('subject-by-class');
 
     Route::get('/subject-by-class/{class_id}/{id}', [SubjectController::class, 'showContent'])->name('subject.showContent');
+    Route::get('/evaluasi', [ExamController::class, 'studentEvaluation'])->name('evaluasi_student');
 
-});
-
-Route::get('/class-student/{class_id}/materials', [SubjectController::class, 'listMaterialsStudent'])
+    Route::get('/exam/{exam_id}/start/{number?}', [ExamController::class, 'start'])->name('exam.question');
+    Route::post('/exam/{exam_id}/start/{number}', [ExamController::class, 'answer'])->name('exam.answer');
+    Route::get('/exam/{exam_id}/complete', [ExamController::class, 'complete'])->name('exam.complete');
+    Route::get('/class-student/{class_id}/materials', [SubjectController::class, 'listMaterialsStudent'])
     ->name('student.materials');
 
 Route::get('/materials/{id}', [SubjectController::class, 'showDetailMaterial'])
     ->name('student.materials.detail');
+    Route::get('/my-results', [ExamController::class, 'resultStudent'])->name('exam.results');
+
+
+});
+
+
+
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -194,6 +203,19 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/exams/{exam_id}/questions/{question_id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
     Route::put('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'update'])->name('questions.update');
     Route::delete('/exams/{exam_id}/questions/{question_id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+
+    // Menampilkan daftar kelas yang memiliki ujian
+// Guru pilih kelas untuk lihat nilai
+Route::get('/grades/by-class', [ExamController::class, 'selectClassGrade'])->name('teacher.grade.by-class');
+
+// Guru pilih exam di kelas
+Route::get('/grades/{class}/exams', [ExamController::class, 'selectExam'])->name('teacher.exam.select');
+
+// Guru lihat nilai per siswa untuk exam tertentu
+Route::get('/grades/exam/{exam_id}/results', [ExamController::class, 'viewResults'])->name('teacher.exam.results');
+
+
+
 
 
 

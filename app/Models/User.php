@@ -23,4 +23,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Nrclass::class, 'class_id', 'id');
     }
+
+    public function examResults()
+{
+    return $this->hasMany(ExamResult::class, 'student_id');
+}
 }

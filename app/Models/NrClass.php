@@ -10,7 +10,7 @@ class NrClass extends Model
     protected $table = 'nr_class';
 
     protected $fillable = ['name'];
-    
+
     protected $dates =['created_at','updated_at'];
 
      public function subjects()
@@ -23,5 +23,10 @@ class NrClass extends Model
     return $this->hasMany(SubjectTopic::class, 'class_id');
 }
 
-   
+public function exams()
+{
+    return $this->hasMany(Exam::class, 'class_id');
+}
+
+
 }

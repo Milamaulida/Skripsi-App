@@ -46,12 +46,13 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="/value-teacher" class="flex items-center p-3 rounded hover:bg-gray-200">
+                        <a href="{{route('teacher.grade.by-class')}}"
+                            class="flex items-center p-3 rounded hover:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2d2d2d"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M4 2h14l4 4v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm13 7h-5v2h5V9zm0 4h-5v2h5v-2zM7 9l2 2 4-4-1.41-1.42L9 8.17 8.41 7.59 7 9z" />
-                            </svg> Input Nilai
+                            </svg> Nilai Siswa
                         </a>
                     </li>
                     <li class="mb-2">

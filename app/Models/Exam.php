@@ -21,4 +21,15 @@ class exam extends Model
     {
         return $this->belongsTo(Nrclass::class, 'class_id', 'id');
     }
+
+    public function results()
+{
+    return $this->hasMany(ExamResult::class);
+}
+
+
+public function questions()
+{
+    return $this->hasMany(Question::class);
+}
 }
